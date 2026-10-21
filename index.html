@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yaline Shanthakumar | Business Analytics</title>
+<meta name="description" content="Business Analytics undergraduate: marketing analytics, AI and automation, simulation and data privacy.">
+<meta name="theme-color" content="#0b0c10">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { ink:'#0b0c10', panel:'#111827', card:'#1f2833', edge:'#374151', teal:'#66fcf1', cyan:'#45f3ff', violet:'#a78bfa' },
+  fontFamily: { sans:['Plus Jakarta Sans','Inter','system-ui','sans-serif'], mono:['JetBrains Mono','ui-monospace','Menlo','monospace'] },
+  keyframes: {
+    marquee:{ to:{ transform:'translateX(-50%)' } },
+    float:{ '50%':{ transform:'translateY(-8px)' } },
+    up:{ to:{ opacity:'1', transform:'none' } }
+  },
+  animation: { marquee:'marquee 28s linear infinite', float:'float 6s ease-in-out infinite', up:'up .7s forwards' }
+} } };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{background:#0b0c10;color:#e5e7eb;overflow-x:hidden}
+html{scroll-padding-top:80px}
+:focus-visible{outline:2px solid #66fcf1;outline-offset:3px;border-radius:6px}
+.glow{transition:transform .2s,box-shadow .2s,border-color .2s,color .2s,background .2s}
+.glow:hover{box-shadow:0 0 0 1px #66fcf1,0 0 24px rgba(102,252,241,.35);border-color:#66fcf1}
+.pill{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.75rem;border:1px solid rgba(102,252,241,.3);background:rgba(102,252,241,.07);color:#66fcf1;padding:.2rem .7rem;border-radius:9999px;white-space:nowrap}
+.glass{background:rgba(17,24,39,.75);border:1px solid #374151;border-radius:1.25rem}
+.grid-bg{background-image:linear-gradient(rgba(102,252,241,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(102,252,241,.05) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(ellipse at 65% 40%,#000 20%,transparent 72%);mask-image:radial-gradient(ellipse at 65% 40%,#000 20%,transparent 72%)}
+.in{opacity:0;transform:translateY(16px)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.show{opacity:1;transform:none}
+
+/* hero graphic */
+.tile{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.hero-art:hover .t-eye{transform:translate(-6px,-6px)}
+.hero-art:hover .t-chart{transform:translate(-8px,4px)}
+.hero-art:hover .t-funnel{transform:translate(8px,-2px)}
+.hero-art:hover .t-cog{transform:translate(6px,8px)}
+.spin{transform-origin:center;transform-box:fill-box;animation:spin 16s linear infinite}
+.hero-art:hover .spin{animation-duration:3s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.draw{stroke-dasharray:400;stroke-dashoffset:400;animation:draw 2s .5s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.blink{transform-origin:center;transform-box:fill-box;animation:blink 5s infinite}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.pupil{transition:transform .15s ease-out}
+.caret{display:inline-block;width:2px;height:1em;background:#66fcf1;margin-left:3px;vertical-align:-2px;animation:cb 1s steps(1) infinite}
+@keyframes cb{50%{opacity:0}}
+.marq:hover .animate-marquee{animation-play-state:paused}
+
+/* simulator slider */
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:9999px;background:#374151;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#66fcf1;box-shadow:0 0 14px rgba(102,252,241,.7);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border:0;border-radius:50%;background:#66fcf1;box-shadow:0 0 14px rgba(102,252,241,.7);cursor:pointer}
+.bar{transform-origin:bottom;transform-box:fill-box;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .in,.rv{opacity:1;transform:none}.draw{stroke-dashoffset:0}
+  .marq .track{flex-wrap:wrap;justify-content:center;width:auto}.marq .dup{display:none}
+}
+</style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- NAV -->
+<header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink bg-opacity-70 backdrop-blur-md">
+  <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5" aria-label="Main">
+    <div class="flex items-center gap-8">
+      <a href="#home" class="font-mono text-base font-medium">yaline<span class="text-teal">_</span></a>
+      <ul class="hidden items-center gap-6 text-sm text-gray-400 md:flex">
+        <li><a class="transition hover:text-teal" href="#about">About</a></li>
+        <li><a class="transition hover:text-teal" href="#experience">Experience</a></li>
+        <li><a class="transition hover:text-teal" href="#projects">Projects</a></li>
+        <li><a class="transition hover:text-teal" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="text-right font-mono text-[11px] leading-tight text-gray-400" aria-label="Local time and UTC">
+        <div>Local time: <span id="lt" class="text-teal">--:--:--</span></div>
+        <div>UTC: <span id="ut">--:--:--</span> · <span id="off">UTC</span></div>
+      </div>
+      <button id="menuBtn" class="rounded-lg border border-edge px-3 py-1.5 text-sm md:hidden" aria-expanded="false" aria-controls="mm">Menu</button>
+    </div>
+  </nav>
+  <ul id="mm" class="hidden border-t border-white/10 bg-ink px-5 py-3 text-gray-300 md:hidden">
+    <li><a class="block py-2" href="#about">About</a></li>
+    <li><a class="block py-2" href="#experience">Experience</a></li>
+    <li><a class="block py-2" href="#projects">Projects</a></li>
+    <li><a class="block py-2" href="#contact">Contact</a></li>
+  </ul>
+</header>
+
+<main>
+<!-- HERO -->
+<section id="home" class="relative flex min-h-screen items-center overflow-hidden pb-16 pt-24">
+  <div class="grid-bg pointer-events-none absolute inset-0"></div>
+  <div class="relative mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
+    <div>
+      <p class="in animate-up mb-5 font-mono text-sm text-teal" style="animation-delay:.05s">NSBM Green University · Sri Lanka</p>
+      <h1 class="in animate-up text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl" style="animation-delay:.15s">Hello, I’m <span class="text-teal">Yaline Shanthakumar</span></h1>
+      <p class="in animate-up mt-5 min-h-[3.5rem] font-mono text-base text-gray-300 sm:text-lg" style="animation-delay:.3s" aria-live="off"><span id="typed">Business Analytics Undergraduate</span><span class="caret"></span></p>
+      <p class="sr-only">Business Analytics Undergraduate | Marketing Analytics | AI &amp; Automation</p>
+      <div class="in animate-up mt-8 flex flex-wrap gap-4" style="animation-delay:.45s">
+        <a href="#contact" class="glow rounded-xl border border-teal bg-teal px-6 py-3 font-semibold text-ink hover:scale-105 hover:bg-cyan">Get in Touch</a>
+        <a href="#projects" class="glow rounded-xl border border-edge px-6 py-3 font-semibold hover:scale-105 hover:text-teal">View Portfolio</a>
+      </div>
+    </div>
+
+    <div class="in animate-up hero-art mx-auto w-full max-w-md" style="animation-delay:.3s" aria-hidden="true">
+      <svg viewBox="0 0 400 400" class="w-full">
+        <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#66fcf1"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs>
+        <circle cx="200" cy="200" r="188" fill="none" stroke="#66fcf1" stroke-opacity=".12" stroke-dasharray="3 9"/>
+        <g class="tile t-eye"><g class="animate-float">
+          <rect x="30" y="30" width="170" height="150" rx="22" fill="#111827" stroke="#374151"/>
+          <g class="blink"><path d="M52 105 Q115 50 178 105 Q115 160 52 105Z" fill="none" stroke="url(#g)" stroke-width="3"/>
+          <circle cx="115" cy="105" r="22" fill="none" stroke="#66fcf1" stroke-width="2"/>
+          <circle id="pupil" class="pupil" cx="115" cy="105" r="10" fill="#66fcf1"/></g>
+        </g></g>
+        <g class="tile t-chart"><g class="animate-float" style="animation-delay:-1.5s">
+          <rect x="215" y="30" width="155" height="150" rx="22" fill="#111827" stroke="#374151"/>
+          <path d="M235 150H350M235 120H350M235 90H350" stroke="#fff" stroke-opacity=".08"/>
+          <path class="draw" d="M235 142 L262 118 L288 126 L315 92 L350 62" fill="none" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="350" cy="62" r="5" fill="#66fcf1"/>
+        </g></g>
+        <g class="tile t-funnel"><g class="animate-float" style="animation-delay:-3s">
+          <rect x="30" y="200" width="170" height="170" rx="22" fill="#111827" stroke="#374151"/>
+          <path d="M55 235H175L130 290V335L100 322V290Z" fill="rgba(102,252,241,.08)" stroke="url(#g)" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="90" cy="255" r="4" fill="#66fcf1"/><circle cx="125" cy="252" r="4" fill="#66fcf1"/><circle cx="155" cy="256" r="4" fill="#66fcf1"/>
+        </g></g>
+        <g class="tile t-cog"><g class="animate-float" style="animation-delay:-4.5s">
+          <rect x="215" y="200" width="155" height="170" rx="22" fill="#111827" stroke="#374151"/>
+          <g class="spin">
+            <circle cx="292" cy="285" r="26" fill="none" stroke="#66fcf1" stroke-width="3"/>
+            <circle cx="292" cy="285" r="9" fill="#66fcf1"/>
+            <path d="M292 248v12M292 310v12M255 285h12M317 285h12M266 259l8 8M310 303l8 8M318 259l-8 8M274 303l-8 8" stroke="#66fcf1" stroke-width="5" stroke-linecap="round"/>
+          </g>
+        </g></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT: statement, pillars, counters -->
+<section id="about" class="mx-auto max-w-6xl px-5 py-20">
+  <h2 class="rv max-w-3xl text-3xl font-extrabold leading-tight sm:text-4xl">Converting high-volume operational metrics into clear strategic decisions.</h2>
+  <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <article class="rv glass glow p-6 hover:-translate-y-1"><span class="font-mono text-sm text-teal">01</span><h3 class="mt-3 font-bold">Marketing Analytics &amp; Consumer Behavior</h3></article>
+    <article class="rv glass glow p-6 hover:-translate-y-1"><span class="font-mono text-sm text-teal">02</span><h3 class="mt-3 font-bold">Business Optimization &amp; Operations</h3></article>
+    <article class="rv glass glow p-6 hover:-translate-y-1"><span class="font-mono text-sm text-teal">03</span><h3 class="mt-3 font-bold">AI, Tech Governance &amp; Data Privacy</h3></article>
+    <article class="rv glass glow p-6 hover:-translate-y-1"><span class="font-mono text-sm text-teal">04</span><h3 class="mt-3 font-bold">Simulation &amp; Predictive Modeling</h3></article>
+  </div>
+  <div class="rv mt-8 grid gap-6 rounded-3xl border border-teal/20 bg-card p-8 sm:grid-cols-3">
+    <div class="text-center"><div class="font-mono text-5xl font-medium text-teal"><span data-count="3.86" data-dec="2">3.86</span></div><p class="mt-2 text-sm text-gray-400">Current Cumulative GPA</p></div>
+    <div class="text-center"><div class="font-mono text-5xl font-medium text-teal"><span data-count="3">3</span>+</div><p class="mt-2 text-sm text-gray-400">Core Analytics Projects Completed</p></div>
+    <div class="text-center"><div class="font-mono text-5xl font-medium text-teal">1st</div><p class="mt-2 text-sm text-gray-400">Place, Research &amp; Article Writing Competitions</p></div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="mx-auto max-w-6xl px-5 py-10">
+  <h2 class="rv mb-6 text-2xl font-extrabold">Tools I work with</h2>
+  <div class="marq overflow-hidden" style="-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)">
+    <div class="track animate-marquee flex w-max gap-3">
+      <div class="flex gap-3"><span class="pill">Python</span><span class="pill">R</span><span class="pill">SQL</span><span class="pill">Power BI</span><span class="pill">Tableau</span><span class="pill">Excel</span><span class="pill">Google Analytics 4</span><span class="pill">Google Ads</span><span class="pill">Git</span><span class="pill">GitHub</span></div>
+      <div class="dup flex gap-3" aria-hidden="true"><span class="pill">Python</span><span class="pill">R</span><span class="pill">SQL</span><span class="pill">Power BI</span><span class="pill">Tableau</span><span class="pill">Excel</span><span class="pill">Google Analytics 4</span><span class="pill">Google Ads</span><span class="pill">Git</span><span class="pill">GitHub</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="mx-auto max-w-6xl px-5 py-20">
+  <h2 class="rv text-3xl font-extrabold sm:text-4xl">Projects</h2>
+  <p class="rv mt-2 text-gray-400">Selected analytics work from 2026.</p>
+  <div class="mt-10 grid gap-6 lg:grid-cols-3">
+    <article class="rv glass glow flex flex-col p-7 hover:-translate-y-1">
+      <time class="font-mono text-xs text-teal">Aug 2026</time>
+      <h3 class="mt-2 text-xl font-bold">Retail Outlet Performance Analysis and Revenue Modeling</h3>
+      <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-gray-300 marker:text-teal">
+        <li>Cleaned data and ran EDA in Python</li>
+        <li>Simple linear regression in R</li>
+        <li>Marketing spend drives 82% of revenue variation</li>
+      </ul>
+      <div class="mt-5 flex flex-wrap gap-2"><span class="pill">Python</span><span class="pill">R</span><span class="pill">Regression</span><span class="pill">EDA</span></div>
+      <a href="https://github.com" target="_blank" rel="noopener" class="glow mt-auto inline-block self-start rounded-lg border border-teal/50 px-5 py-2 text-sm text-teal hover:scale-105 hover:bg-teal hover:text-ink" style="margin-top:1.5rem">View Repository</a>
+    </article>
+    <article class="rv glass glow flex flex-col p-7 hover:-translate-y-1">
+      <time class="font-mono text-xs text-teal">Jul 2026</time>
+      <h3 class="mt-2 text-xl font-bold">Global Renewable Energy Transition Dashboard</h3>
+      <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-gray-300 marker:text-teal">
+        <li>Interactive Tableau views of production capacity</li>
+        <li>Tracks investment and infrastructure shifts</li>
+        <li>Covers 2015–2024</li>
+      </ul>
+      <div class="mt-5 flex flex-wrap gap-2"><span class="pill">Tableau</span><span class="pill">Data Viz</span><span class="pill">Data Modeling</span></div>
+      <a href="https://github.com" target="_blank" rel="noopener" class="glow mt-auto inline-block self-start rounded-lg border border-teal/50 px-5 py-2 text-sm text-teal hover:scale-105 hover:bg-teal hover:text-ink" style="margin-top:1.5rem">Launch Live Dashboard</a>
+    </article>
+    <article class="rv glass glow flex flex-col p-7 hover:-translate-y-1">
+      <time class="font-mono text-xs text-teal">Sept 2026</time>
+      <h3 class="mt-2 text-xl font-bold">Simulation-Based Capacity Planning</h3>
+      <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-gray-300 marker:text-teal">
+        <li>Discrete-event simulation of a retail bank service center</li>
+        <li>Lognormal service times, 30 replications</li>
+        <li>Balances labor cost against a 15-minute wait target</li>
+      </ul>
+      <div class="mt-5 flex flex-wrap gap-2"><span class="pill">Simulation</span><span class="pill">Operations</span><span class="pill">Queueing</span></div>
+      <a href="https://github.com" target="_blank" rel="noopener" class="glow mt-auto inline-block self-start rounded-lg border border-teal/50 px-5 py-2 text-sm text-teal hover:scale-105 hover:bg-teal hover:text-ink" style="margin-top:1.5rem">View Repository</a>
+    </article>
+  </div>
+</section>
+
+<!-- SIMULATOR -->
+<section id="playground" class="mx-auto max-w-6xl px-5 py-10">
+  <h2 class="rv text-3xl font-extrabold sm:text-4xl">Live Campaign ROI &amp; Growth Simulator</h2>
+  <p class="rv mt-2 max-w-2xl text-gray-400">Move the sliders to see how spend and conversion shape revenue. This is an illustrative model with made-up numbers, not real client data.</p>
+  <div class="rv glass mt-8 grid gap-8 p-6 md:grid-cols-2 md:p-8">
+    <div class="space-y-7">
+      <div>
+        <label for="spend" class="flex justify-between text-sm"><span>Monthly Marketing Spend ($)</span><output id="spendV" class="font-mono text-teal">5,000</output></label>
+        <input id="spend" type="range" min="1000" max="20000" step="500" value="5000" class="mt-3">
+      </div>
+      <div>
+        <label for="conv" class="flex justify-between text-sm"><span>Conversion Rate (%)</span><output id="convV" class="font-mono text-teal">2.5</output></label>
+        <input id="conv" type="range" min="0.5" max="8" step="0.1" value="2.5" class="mt-3">
+      </div>
+      <div class="grid grid-cols-3 gap-3 text-center">
+        <div class="rounded-xl bg-ink p-3"><div id="rev" class="font-mono text-xl text-teal">0</div><div class="mt-1 text-[11px] text-gray-400">Est. Gross Revenue ($k)</div></div>
+        <div class="rounded-xl bg-ink p-3"><div id="roi" class="font-mono text-xl text-teal">0</div><div class="mt-1 text-[11px] text-gray-400">ROI (%)</div></div>
+        <div class="rounded-xl bg-ink p-3"><div id="sales" class="font-mono text-xl text-teal">0</div><div class="mt-1 text-[11px] text-gray-400">Projected Sales</div></div>
+      </div>
+    </div>
+    <div>
+      <p class="mb-2 font-mono text-xs text-gray-400">Projected revenue, next 6 months ($k)</p>
+      <svg viewBox="0 0 300 170" class="w-full" role="img" aria-label="Projected monthly revenue bars">
+        <path d="M0 140H300" stroke="#374151"/>
+        <g id="bars" fill="#66fcf1"></g>
+        <g id="lbls" font-family="JetBrains Mono, monospace" font-size="10" fill="#9ca3af" text-anchor="middle"></g>
+      </svg>
+      <p class="mt-2 text-xs text-gray-500">Model: visitors = spend ÷ $1.50 per click, order value $60, monthly growth 6%.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="mx-auto max-w-4xl px-5 py-20">
+  <h2 class="rv text-3xl font-extrabold sm:text-4xl">Experience &amp; Writing</h2>
+  <div class="mt-10 border-l border-edge">
+    <article class="rv relative pb-10 pl-8">
+      <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-teal shadow-[0_0_0_5px_rgba(102,252,241,.15)]"></span>
+      <time class="font-mono text-xs text-teal">Jan 2026 – Present</time>
+      <h3 class="mt-1 text-lg font-bold">Assistant Secretary &amp; Editor-in-Chief</h3>
+      <p class="text-sm text-gray-400">Students’ Business Analytics Circle (SBAC), NSBM Green University</p>
+      <p class="mt-2 max-w-xl text-sm text-gray-300">Keep official records, help run student events, and lead editorial planning for the SBAC magazine.</p>
+    </article>
+    <article class="rv relative pb-10 pl-8">
+      <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-teal shadow-[0_0_0_5px_rgba(102,252,241,.15)]"></span>
+      <time class="font-mono text-xs text-teal">Jul – Sept 2025</time>
+      <h3 class="mt-1 text-lg font-bold">Group Leader &amp; Project Lead, CSR Initiatives</h3>
+      <p class="text-sm text-gray-400">CREST Program, NSBM Green University</p>
+      <p class="mt-2 max-w-xl text-sm text-gray-300">Led Project DigniTap, a school sanitation initiative aligned with UN SDG 6, from planning to delivery.</p>
+    </article>
+    <article class="rv relative pl-8">
+      <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-violet shadow-[0_0_0_5px_rgba(167,139,250,.15)]"></span>
+      <time class="font-mono text-xs text-violet">2025 – 2026</time>
+      <h3 class="mt-1 text-lg font-bold">Published Author, SCAF Times</h3>
+      <p class="text-sm text-gray-400">SCAF, NSBM Green University</p>
+      <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-gray-300 marker:text-violet">
+        <li>“The Invisible Accountant: A Profession in Identity Crisis” (5th Edition, 2026)</li>
+        <li>“AI and Finance – Sri Lanka’s Ascent Towards an Empathetic Financial Future” (Issue 04, 2025)</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="mx-auto max-w-6xl px-5 pb-20">
+  <div class="rv glass grid gap-10 p-8 md:grid-cols-2 md:p-12">
+    <div>
+      <h2 class="text-3xl font-extrabold sm:text-4xl">Let’s talk data.</h2>
+      <p class="mt-3 text-gray-400">Open to internships and collaborations in analytics and marketing.</p>
+      <ul class="mt-8 space-y-3 font-mono text-sm">
+        <li><a href="https://www.linkedin.com/in/yaline-s-616107382/" target="_blank" rel="noopener" class="glow flex items-center justify-between rounded-lg border border-edge px-4 py-3 hover:text-teal"><span>LinkedIn</span><span>↗</span></a></li>
+        <li><a href="https://github.com" target="_blank" rel="noopener" class="glow flex items-center justify-between rounded-lg border border-edge px-4 py-3 hover:text-teal"><span>GitHub</span><span>↗</span></a></li>
+        <li><a href="mailto:skyali1202@gmail.com" class="glow flex items-center justify-between rounded-lg border border-edge px-4 py-3 hover:text-teal"><span>skyali1202@gmail.com</span><span>↗</span></a></li>
+      </ul>
+    </div>
+    <form id="form" class="space-y-4 rounded-2xl border border-edge bg-ink p-6" novalidate>
+      <p class="font-mono text-xs text-gray-500">New message → skyali1202@gmail.com</p>
+      <div><label for="n" class="mb-1 block text-sm text-gray-400">Name</label><input id="n" autocomplete="name" class="w-full rounded-lg border border-edge bg-panel px-4 py-3 outline-none transition focus:border-teal focus:ring-1 focus:ring-teal"></div>
+      <div><label for="e" class="mb-1 block text-sm text-gray-400">Email</label><input id="e" type="email" autocomplete="email" class="w-full rounded-lg border border-edge bg-panel px-4 py-3 outline-none transition focus:border-teal focus:ring-1 focus:ring-teal"></div>
+      <div><label for="m" class="mb-1 block text-sm text-gray-400">Message</label><textarea id="m" rows="4" class="w-full rounded-lg border border-edge bg-panel px-4 py-3 outline-none transition focus:border-teal focus:ring-1 focus:ring-teal"></textarea></div>
+      <button type="submit" class="glow w-full rounded-lg bg-teal px-6 py-3 font-semibold text-ink hover:scale-[1.02] hover:bg-cyan">Send message</button>
+      <p id="msg" class="min-h-[1.25rem] text-sm text-teal" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-white/10 py-8 text-center font-mono text-xs text-gray-500">© <span id="yr">2026</span> Yaline Shanthakumar · <a href="#home" class="hover:text-teal">Back to top</a></footer>
+
+<script>
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// mobile menu
+var mb = document.getElementById('menuBtn'), mm = document.getElementById('mm');
+mb.addEventListener('click', function () { mb.setAttribute('aria-expanded', mm.classList.toggle('hidden') === false); });
+mm.addEventListener('click', function (e) { if (e.target.tagName === 'A') { mm.classList.add('hidden'); mb.setAttribute('aria-expanded', 'false'); } });
+
+// clock: local time + UTC
+var lt = document.getElementById('lt'), ut = document.getElementById('ut'), offEl = document.getElementById('off');
+var o = -new Date().getTimezoneOffset(), sign = o >= 0 ? '+' : '-', ao = Math.abs(o);
+offEl.textContent = 'UTC' + sign + Math.floor(ao / 60) + (ao % 60 ? ':' + String(ao % 60).padStart(2, '0') : '');
+function tick() {
+  var d = new Date();
+  lt.textContent = d.toLocaleTimeString('en-GB', { hour12: false });
+  ut.textContent = d.toLocaleTimeString('en-GB', { hour12: false, timeZone: 'UTC' });
+}
+tick(); setInterval(tick, 1000);
+
+// typed subtitle
+var words = ['Business Analytics Undergraduate', 'Marketing Analytics', 'AI & Automation'], wi = 0, ci = 0, del = false, typed = document.getElementById('typed');
+function type() {
+  var w = words[wi];
+  if (reduce) { typed.textContent = words.join(' | '); return; }
+  typed.textContent = w.slice(0, ci);
+  if (!del && ci < w.length) { ci++; setTimeout(type, 70); }
+  else if (!del) { del = true; setTimeout(type, 1600); }
+  else if (ci > 0) { ci--; setTimeout(type, 35); }
+  else { del = false; wi = (wi + 1) % words.length; setTimeout(type, 300); }
+}
+type();
+
+// scroll reveal + counters
+function count(el) {
+  if (reduce) return;
+  var end = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), t0 = null;
+  function step(t) { if (!t0) t0 = t; var p = Math.min((t - t0) / 1200, 1); el.textContent = (end * (1 - Math.pow(1 - p, 3))).toFixed(dec); if (p < 1) requestAnimationFrame(step); }
+  requestAnimationFrame(step);
+}
+var els = document.querySelectorAll('.rv');
+if ('IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('show');
+      e.target.querySelectorAll('[data-count]').forEach(count);
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function (el) { io.observe(el); });
+} else { els.forEach(function (el) { el.classList.add('show'); }); }
+
+// eye follows pointer
+var pupil = document.getElementById('pupil'), busy = false;
+if (pupil && !reduce) {
+  window.addEventListener('pointermove', function (e) {
+    if (busy) return; busy = true;
+    requestAnimationFrame(function () {
+      var r = pupil.getBoundingClientRect(), dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2), d = Math.hypot(dx, dy) || 1, k = Math.min(9, d / 25);
+      pupil.style.transform = 'translate(' + (dx / d * k) + 'px,' + (dy / d * k * .6) + 'px)';
+      busy = false;
+    });
+  }, { passive: true });
+}
+
+// ROI simulator
+var sp = document.getElementById('spend'), cv = document.getElementById('conv');
+var barsG = document.getElementById('bars'), lblG = document.getElementById('lbls'), NS = 'http://www.w3.org/2000/svg', rects = [], texts = [];
+for (var i = 0; i < 6; i++) {
+  var r = document.createElementNS(NS, 'rect'); r.setAttribute('x', 18 + i * 48); r.setAttribute('width', 30); r.setAttribute('rx', 5); r.setAttribute('y', 0); r.setAttribute('height', 140); r.setAttribute('class', 'bar'); r.setAttribute('fill-opacity', (0.45 + i * 0.11).toFixed(2));
+  barsG.appendChild(r); rects.push(r);
+  var t = document.createElementNS(NS, 'text'); t.setAttribute('x', 33 + i * 48); t.setAttribute('y', 158); t.textContent = 'M' + (i + 1);
+  lblG.appendChild(t);
+}
+function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+function sim() {
+  var spend = +sp.value, conv = +cv.value / 100, clicks = spend / 1.5, orders = clicks * conv, revenue = orders * 60;
+  document.getElementById('spendV').textContent = fmt(spend);
+  document.getElementById('convV').textContent = (+cv.value).toFixed(1);
+  document.getElementById('rev').textContent = (revenue / 1000).toFixed(1);
+  document.getElementById('roi').textContent = fmt((revenue - spend) / spend * 100);
+  document.getElementById('sales').textContent = fmt(orders);
+  var top = Math.max(revenue * Math.pow(1.06, 5), 1);
+  for (var j = 0; j < 6; j++) {
+    var v = revenue * Math.pow(1.06, j), h = Math.max(6, v / top * 120);
+    rects[j].setAttribute('y', 140 - 120); rects[j].setAttribute('height', 120);
+    rects[j].style.transform = 'scaleY(' + (h / 120) + ')';
+  }
+}
+sp.addEventListener('input', sim); cv.addEventListener('input', sim); sim();
+
+// contact form (opens visitor's email app)
+document.getElementById('form').addEventListener('submit', function (ev) {
+  ev.preventDefault();
+  var n = document.getElementById('n').value.trim(), e = document.getElementById('e').value.trim(), m = document.getElementById('m').value.trim(), out = document.getElementById('msg');
+  if (!n || !/^\S+@\S+\.\S+$/.test(e) || !m) { out.textContent = 'Please add your name, a valid email and a message.'; return; }
+  out.textContent = 'Opening your email app…';
+  window.location.href = 'mailto:skyali1202@gmail.com?subject=' + encodeURIComponent('Portfolio message from ' + n) + '&body=' + encodeURIComponent(m + '\n\nFrom: ' + n + ' (' + e + ')');
+});
+</script>
+</body>
+</html>
