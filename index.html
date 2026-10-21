@@ -1,264 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yaline Shanthakumar · Business Analytics Portfolio</title>
-<meta name="description" content="Business Analytics undergraduate: customer insights, simulation, data storytelling.">
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<style>
-/* ===== 1. DESIGN TOKENS (sampled from the cosmic reference) ===== */
-:root{--bg:#05030f;--indigo:#120a2e;--violet:#7c3aed;--neon:#a78bfa;--teal:#2dd4bf;--ink:#f4f2ff;--mut:#a9a3c7}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden}
-.mono{font-family:'JetBrains Mono',monospace}
-/* ===== 2. BACKGROUND: gradient, auras, stars ===== */
-.cosmos{position:fixed;inset:0;z-index:-2;background:
- radial-gradient(60% 45% at 50% -8%,rgba(124,58,237,.55),transparent 70%),
- radial-gradient(40% 40% at 90% 40%,rgba(99,102,241,.22),transparent 70%),
- radial-gradient(45% 40% at 5% 85%,rgba(76,29,149,.35),transparent 70%),
- linear-gradient(180deg,#120a2e 0%,#07041a 45%,#05030f 100%)}
-.stars{position:fixed;inset:0;z-index:-1;opacity:.7;
- background-image:radial-gradient(1px 1px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 90px 120px,#c4b5fd,transparent),radial-gradient(1.5px 1.5px at 160px 60px,#fff,transparent),radial-gradient(1px 1px at 230px 180px,#99f6e4,transparent);
- background-size:260px 220px}
-/* ===== 3. GRAIN OVERLAY (SVG feTurbulence) ===== */
-.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.09;mix-blend-mode:overlay;
- background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-/* ===== 4. UTILITIES ===== */
-.glass{background:rgba(255,255,255,.05);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(167,139,250,.18)}
-.glow-text{background:linear-gradient(90deg,#a78bfa,#7c3aed 55%,#2dd4bf);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(124,58,237,.6))}
-.btn-p{background:var(--violet);box-shadow:0 0 28px rgba(124,58,237,.65);transition:.2s}.btn-p:hover{transform:translateY(-2px);box-shadow:0 0 42px rgba(167,139,250,.8)}
-.btn-g{border:1px solid rgba(167,139,250,.4);transition:.2s}.btn-g:hover{background:rgba(124,58,237,.15);border-color:var(--neon)}
-.card{border-radius:1.25rem;transition:.25s}.card:hover{border-color:rgba(45,212,191,.45)}
-.reveal{opacity:0;transform:translateY(24px);transition:.8s}.reveal.in{opacity:1;transform:none}
-.spin{animation:spin 16s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
-input[type=range]{accent-color:var(--violet);width:100%}
-.dot{width:14px;height:14px;border-radius:50%;transition:.3s}
-.dot.on-g{background:#22c55e;box-shadow:0 0 18px #22c55e}.dot.on-r{background:#ef4444;box-shadow:0 0 18px #ef4444}
-.tab.active{background:var(--violet);color:#fff}
-.art{background:#000;position:relative;overflow:hidden}
-.art svg{width:100%;height:100%;display:block;filter:contrast(1.25)}
-.art::after{content:"";position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
-section{scroll-margin-top:5rem}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaline Shanthakumar · Business Analytics Portfolio</title>
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://jsdelivr.net"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-mono-data {
+            font-family: 'Space Mono', monospace;
+        }
+        /* Custom Keyframe Animations */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 15s linear infinite;
+        }
+    </style>
 </head>
-<body>
-<div class="cosmos"></div><div class="stars"></div><div class="grain"></div>
+<body class="bg-neutral-950 text-neutral-100 relative min-h-screen selection:bg-purple-500 selection:text-white">
 
-<!-- ===== HEADER: logo + social dock ===== -->
-<header class="fixed top-0 inset-x-0 z-40 flex items-center justify-between px-5 md:px-10 py-5">
-  <a href="#home" class="text-lg font-bold tracking-tight">yaline <span class="text-[var(--neon)] font-medium">shanthakumar</span><span class="text-[var(--teal)]">.</span></a>
-  <div class="glass rounded-full px-4 py-2 flex gap-4">
-    <a aria-label="LinkedIn" target="_blank" rel="noopener" href="https://www.linkedin.com/in/yaline-s-616107382/" class="hover:text-[var(--teal)]"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11.5H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.82-2 3.75-2 4 0 4.75 2.6 4.75 6v5.9h-4v-5.2c0-1.25 0-2.85-1.75-2.85s-2 1.35-2 2.75v5.3h-4z"/></svg></a>
-    <!-- TODO: replace with your real GitHub URL -->
-    <a aria-label="GitHub" target="_blank" rel="noopener" href="https://github.com/" class="hover:text-[var(--teal)]"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg></a>
-  </div>
-</header>
+    <!-- Global Grain Noise Overlay Layer -->
+    <div class="fixed inset-0 pointer-events-none opacity-[0.015] z-50 bg-repeat bg-center" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://w3.org id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
 
-<!-- ===== RIGHT-EDGE PILL NAV ===== -->
-<nav aria-label="Sections" class="fixed right-3 md:right-6 top-1/2 -translate-y-1/2 z-40 glass rounded-full py-3 px-2 flex flex-col gap-2">
-  <a href="#home" data-n title="Home" class="nv">⌂</a><a href="#pillars" data-n title="Expertise" class="nv">◆</a><a href="#work" data-n title="Work" class="nv">▦</a><a href="#writing" data-n title="Writing" class="nv">✎</a><a href="#contact" data-n title="Contact" class="nv">✉</a>
-</nav>
-<style>.nv{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;color:var(--mut);font-size:14px;transition:.2s}.nv:hover,.nv.act{background:var(--violet);color:#fff}</style>
+    <!-- Cosmic Nebula Background Gradients (From Image 3) -->
+    <div class="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="absolute top-[40vh] left-1/3 w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-20 left-10 w-[350px] h-[350px] bg-teal-500/5 rounded-full blur-[100px] pointer-events-none"></div>
 
-<main class="px-5 md:px-10 max-w-6xl mx-auto md:pr-20">
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="w-full max-w-7xl mx-auto flex justify-between items-center p-6 md:px-12 z-20 relative">
+        <div class="text-xl font-bold tracking-tight text-neutral-200">yaline shanthakumar<span class="text-purple-500">.</span></div>
+        
+        <!-- Top Right Social Dock (From Image 1) -->
+        <div class="flex items-center gap-4 bg-neutral-900/40 backdrop-blur-md border border-neutral-800/80 px-4 py-2 rounded-full">
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="text-neutral-400 hover:text-purple-400 transition-colors duration-300">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <div class="w-[1px] h-4 bg-neutral-800"></div>
+            <a href="https://github.com" target="_blank" aria-label="GitHub" class="text-neutral-400 hover:text-teal-400 transition-colors duration-300">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+        </div>
+    </header>
 
-<!-- ===== HERO ===== -->
-<section id="home" class="min-h-screen grid md:grid-cols-2 gap-10 items-center pt-28 pb-24 relative">
-  <div>
-    <span class="glass rounded-full px-3 py-1 text-xs mono text-[var(--neon)]">Business Analytics · NSBM Green University</span>
-    <h1 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight">Transforming Raw Data Into <span class="glow-text">Customer Insights</span></h1>
-    <p class="mt-5 text-[var(--mut)] max-w-md leading-relaxed">Business Analytics undergraduate specialized in bringing operational numbers to life through digital marketing strategy, predictive simulation, and data storytelling.</p>
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/yaline-s-616107382/" class="btn-p rounded-xl px-5 py-3 font-semibold text-sm inline-flex items-center gap-2">Connect on LinkedIn <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11.5H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.82-2 3.75-2 4 0 4.75 2.6 4.75 6v5.9h-4v-5.2c0-1.25 0-2.85-1.75-2.85s-2 1.35-2 2.75v5.3h-4z"/></svg></a>
-      <a target="_blank" rel="noopener" href="https://github.com/" class="btn-g rounded-xl px-5 py-3 font-semibold text-sm inline-flex items-center gap-2">View GitHub Repos <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg></a>
-    </div>
-  </div>
-  <!-- Focal artwork: grainy retro-futuristic "data eye" (no photo) -->
-  <div class="art rounded-2xl aspect-[4/3] border border-[rgba(167,139,250,.2)] shadow-[0_0_80px_rgba(124,58,237,.35)]" role="img" aria-label="Abstract artwork: an eye made of data bars">
-    <svg viewBox="0 0 400 300">
-      <defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient>
-      <radialGradient id="ir"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#a78bfa"/><stop offset="1" stop-color="#1e0b4b"/></radialGradient></defs>
-      <rect width="400" height="300" fill="#000"/>
-      <g stroke="#7c3aed" stroke-width="2" opacity=".7"><path d="M40 60h320M40 80h320M40 100h320M40 120h320M40 140h320M40 160h320M40 180h320M40 200h320M40 220h320"/></g>
-      <g fill="url(#lg)" opacity=".85"><rect x="70" y="170" width="14" height="50"/><rect x="92" y="150" width="14" height="70"/><rect x="114" y="185" width="14" height="35"/><rect x="290" y="160" width="14" height="60"/><rect x="312" y="130" width="14" height="90"/><rect x="334" y="175" width="14" height="45"/></g>
-      <path d="M90 130Q200 40 310 130Q200 220 90 130Z" fill="#0a0420" stroke="#c4b5fd" stroke-width="3"/>
-      <circle cx="200" cy="130" r="46" fill="url(#ir)"/><circle cx="200" cy="130" r="18" fill="#000"/><circle cx="188" cy="118" r="6" fill="#fff"/>
-      <circle cx="70" cy="70" r="26" fill="#050210" stroke="#7c3aed" stroke-width="2"/><circle cx="335" cy="75" r="20" fill="#050210" stroke="#2dd4bf" stroke-width="2"/>
-      <circle cx="320" cy="240" r="30" fill="none" stroke="#a78bfa" stroke-width="3" stroke-dasharray="4 6"/>
-    </svg>
-  </div>
-  <!-- Rotating badge -->
-  <a href="#work" class="absolute left-0 bottom-6 w-28 h-28 hidden sm:block" aria-label="Explore projects">
-    <svg viewBox="0 0 120 120" class="spin w-full h-full"><defs><path id="c" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs><text fill="#a78bfa" font-size="10.5" letter-spacing="2.2" class="mono"><textPath href="#c">• MY PORTFOLIO • EXPLORE PROJECTS </textPath></text></svg>
-    <span class="absolute inset-0 grid place-items-center text-xl text-[var(--teal)]">↘</span>
-  </a>
-</section>
+    <!-- RIGHT EDGE FLOATING MENU DOCK (From Image 1) -->
+    <nav class="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-5 bg-neutral-900/60 backdrop-blur-lg border border-neutral-800/80 px-3 py-6 rounded-full shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+        <a href="#hero" class="text-neutral-400 hover:text-purple-400 p-2 transition-colors duration-200" title="Top">⌂</a>
+        <a href="#expertise" class="text-neutral-400 hover:text-purple-400 p-2 transition-colors duration-200" title="Expertise">◆</a>
+        <a href="#work" class="text-neutral-400 hover:text-purple-400 p-2 transition-colors duration-200" title="Selected Work">▦</a>
+        <a href="#insights" class="text-neutral-400 hover:text-purple-400 p-2 transition-colors duration-200" title="Thought Leadership">✎</a>
+        <a href="#contact" class="text-neutral-400 hover:text-purple-400 p-2 transition-colors duration-200" title="Contact">✉</a>
+    </nav>
 
-<!-- ===== METRICS ===== -->
-<section class="grid grid-cols-3 gap-3 sm:gap-6 reveal" id="metrics">
-  <div class="glass card p-4 sm:p-7"><div class="mono text-3xl sm:text-5xl font-semibold text-[var(--teal)]"><span data-c="3">0</span>+</div><p class="mt-2 text-xs sm:text-sm text-[var(--mut)]">Published Insights / Articles</p></div>
-  <div class="glass card p-4 sm:p-7"><div class="mono text-3xl sm:text-5xl font-semibold text-[var(--neon)]"><span data-c="10" data-s="k">0</span>+</div><p class="mt-2 text-xs sm:text-sm text-[var(--mut)]">Rows Processed &amp; Modeled</p></div>
-  <div class="glass card p-4 sm:p-7"><div class="mono text-3xl sm:text-5xl font-semibold text-[var(--teal)]"><span data-c="5">0</span>+</div><p class="mt-2 text-xs sm:text-sm text-[var(--mut)]">Major Events Hosted</p></div>
-</section>
+    <!-- HERO / SECTION FIRST -->
+    <section id="hero" class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center px-6 md:px-12 pt-8 pb-16 min-h-[85vh] relative z-10">
+        <!-- Left Side Context Block -->
+        <div class="lg:col-span-7 space-y-6">
+            <div class="inline-block text-xs font-semibold uppercase tracking-widest text-teal-400 bg-teal-950/40 border border-teal-900/60 px-3 py-1 rounded-full">
+                Business Analytics · NSBM Green University
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] text-white">
+                Transforming Raw Data Into <span class="bg-gradient-to-r from-purple-400 via-indigo-400 to-teal-400 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(168,85,247,0.25)]">Customer Insights</span>
+            </h1>
+            <p class="text-neutral-400 text-base md:text-lg max-w-xl leading-relaxed">
+                Business Analytics undergraduate specialized in bringing operational numbers to life through digital marketing strategy, predictive simulation, and data storytelling.
+            </p>
 
-<!-- ===== PILLARS ===== -->
-<section id="pillars" class="py-28 reveal">
-  <p class="mono text-xs text-[var(--teal)] tracking-widest">MY EXPERTISE</p>
-  <h2 class="mt-2 text-3xl sm:text-4xl font-bold">Four pillars, one lens: <span class="glow-text">the customer</span></h2>
-  <div class="mt-10 grid sm:grid-cols-2 gap-4">
-    <div class="glass card p-6"><span class="mono text-[var(--neon)]">01</span><h3 class="mt-2 text-xl font-semibold">Customer &amp; Marketing Analytics</h3><p class="mt-2 text-sm text-[var(--mut)]">GA4, Google Ads, campaign analysis and consumer behavior.</p></div>
-    <div class="glass card p-6"><span class="mono text-[var(--neon)]">02</span><h3 class="mt-2 text-xl font-semibold">Data Storytelling &amp; Editorial</h3><p class="mt-2 text-sm text-[var(--mut)]">Editor-in-Chief of the SBAC Magazine; insights written for people.</p></div>
-    <div class="glass card p-6"><span class="mono text-[var(--neon)]">03</span><h3 class="mt-2 text-xl font-semibold">Simulation &amp; Predictive Modeling</h3><p class="mt-2 text-sm text-[var(--mut)]">Python, R, regression and discrete-event simulation.</p></div>
-    <div class="glass card p-6"><span class="mono text-[var(--neon)]">04</span><h3 class="mt-2 text-xl font-semibold">Responsible AI &amp; Privacy Policy</h3><p class="mt-2 text-sm text-[var(--mut)]">Data privacy and the ethics of automation in business.</p></div>
-  </div>
-</section>
+            <div class="flex flex-wrap gap-4 pt-2">
+                <a href="https://linkedin.com" target="_blank" class="px-6 py-3 bg-purple-600 hover:bg-purple-500 font-semibold tracking-wide rounded-xl transition-all duration-300 shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-[0_0_35px_rgba(147,51,234,0.5)] transform hover:-translate-y-0.5 flex items-center gap-2">
+                    Connect on LinkedIn ➔
+                </a>
+                <a href="https://github.com" target="_blank" class="px-6 py-3 bg-neutral-900/60 hover:bg-neutral-800/80 border border-neutral-800 font-semibold tracking-wide rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 text-neutral-300 hover:text-white">
+                    View GitHub Repos
+                </a>
+            </div>
+        </div>
 
-<!-- ===== SELECTED WORK ===== -->
-<section id="work" class="pb-28">
-  <p class="mono text-xs text-[var(--teal)] tracking-widest">SELECTED WORK</p>
-  <h2 class="mt-2 text-3xl sm:text-4xl font-bold">Case studies you can <span class="glow-text">play with</span></h2>
+        <!-- Right Side: Grainy Abstract Artwork (From Image 2 & Image 3 concept) -->
+        <div class="lg:col-span-5 flex justify-center items-center relative">
+            <div class="absolute inset-0 bg-purple-500/10 rounded-full filter blur-3xl opacity-60"></div>
+            <!-- Complex CSS/SVG Grainy Eye & Grid Focal Layout -->
+            <div class="relative w-72 h-72 md:w-96 md:h-96 border border-neutral-800/40 rounded-3xl bg-neutral-900/10 backdrop-blur-sm flex items-center justify-center p-8 overflow-hidden group shadow-[inset_0_0_40px_rgba(255,255,255,0.02)]">
+                <!-- Retro-Futuristic Technical Grids -->
+                <div class="absolute w-full h-full border border-dashed border-neutral-800/40 rounded-full animate-spin-slow"></div>
+                <div class="absolute w-3/4 h-3/4 border border-neutral-800/60 rounded-full"></div>
+                <div class="absolute w-1/2 h-1/2 border border-purple-900/40 rounded-full shadow-[0_0_30px_rgba(147,51,234,0.1)]"></div>
+                <!-- Core Insight Grainy Vision Symbol -->
+                <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-purple-600 to-teal-400 opacity-40 mix-blend-screen filter blur-md absolute"></div>
+                <div class="w-16 h-16 rounded-full border-2 border-neutral-400 bg-neutral-950/80 z-10 flex items-center justify-center shadow-[0_0_40px_rgba(147,51,234,0.4)]">
+                    <div class="w-6 h-6 rounded-full bg-teal-400 shadow-[0_0_15px_rgba(45,212,191,0.8)]"></div>
+                </div>
+                <!-- Data Nodes -->
+                <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-purple-400 rounded-full"></div>
+                <div class="absolute bottom-1/3 right-1/4 w-1.5 h-1.5 bg-teal-400 rounded-full"></div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Project 1: Tableau stepper -->
-  <article class="glass card p-6 sm:p-8 mt-10 reveal">
-    <span class="mono text-xs text-[var(--neon)]">TABLEAU · JUL 2026</span>
-    <h3 class="text-2xl font-semibold mt-1">Global Renewable Energy Transition Dashboard</h3>
-    <p class="text-sm text-[var(--mut)] mt-2">Production, capacity and investment trends, 2015–2024. Step through the build:</p>
-    <div class="flex flex-wrap gap-2 mt-5" id="steps">
-      <button class="tab active rounded-full px-4 py-1.5 text-sm glass" data-i="0">1 · Raw data</button>
-      <button class="tab rounded-full px-4 py-1.5 text-sm glass" data-i="1">2 · Relationships</button>
-      <button class="tab rounded-full px-4 py-1.5 text-sm glass" data-i="2">3 · Dashboard</button>
-    </div>
-    <div id="stepView" class="mt-5 rounded-xl bg-black/40 border border-white/10 p-5 min-h-[150px]"></div>
-  </article>
-
-  <!-- Project 2: regression -->
-  <article class="glass card p-6 sm:p-8 mt-6 reveal">
-    <span class="mono text-xs text-[var(--neon)]">PYTHON + R · AUG 2026</span>
-    <h3 class="text-2xl font-semibold mt-1">Retail Outlet Performance Analysis and Revenue Modeling</h3>
-    <p class="text-sm text-[var(--mut)] mt-2">Cleaning, EDA and visualization in Python; simple linear regression in R. Drag to predict revenue.</p>
-    <div class="mt-6 grid md:grid-cols-2 gap-6 items-center">
-      <div>
-        <label for="spend" class="text-sm">Marketing Spend: <span id="spendV" class="mono text-[var(--teal)]"></span></label>
-        <input id="spend" type="range" min="10" max="100" step="1" value="40" class="mt-3">
-        <p class="mono text-xs text-[var(--mut)] mt-3">Revenue = 18.5 + 2.3 × Spend &nbsp;·&nbsp; R² = 0.82</p>
-        <div class="mt-3 h-2 rounded bg-white/10"><div class="h-2 rounded" style="width:82%;background:linear-gradient(90deg,#7c3aed,#2dd4bf)"></div></div>
-        <p class="text-xs text-[var(--mut)] mt-1">Marketing spend explains 82% of the variation in revenue.</p>
-      </div>
-      <div class="rounded-xl bg-black/40 border border-white/10 p-5 text-center">
-        <p class="text-xs text-[var(--mut)]">Predicted Revenue</p><p id="rev" class="mono text-4xl font-semibold text-[var(--teal)]"></p>
-        <p class="text-xs text-[var(--mut)] mt-3">Growth vs. baseline (spend 20)</p><p id="gr" class="mono text-2xl text-[var(--neon)]"></p>
-      </div>
-    </div>
-    <p class="text-[11px] text-[var(--mut)] mt-4">Illustrative coefficients in LKR '000 for demonstration; replace with your fitted R model output.</p>
-  </article>
-
-  <!-- Project 3: simulation -->
-  <article class="glass card p-6 sm:p-8 mt-6 reveal">
-    <span class="mono text-xs text-[var(--neon)]">DISCRETE-EVENT SIMULATION · SEPT 2026</span>
-    <h3 class="text-2xl font-semibold mt-1">Simulation-Based Capacity Planning — Retail Banking Service Center</h3>
-    <p class="text-sm text-[var(--mut)] mt-2">Exponential arrivals, lognormal service times, 30 replications. Pick a staffing level; it runs live in your browser.</p>
-    <div class="flex flex-wrap gap-2 mt-5" id="tellers">
-      <button class="tab rounded-full px-4 py-1.5 text-sm glass active" data-t="2">2 Tellers</button>
-      <button class="tab rounded-full px-4 py-1.5 text-sm glass" data-t="3">3 Tellers</button>
-      <button class="tab rounded-full px-4 py-1.5 text-sm glass" data-t="4">4 Tellers</button>
-      <button class="tab rounded-full px-4 py-1.5 text-sm glass" data-t="5">5 Tellers</button>
-    </div>
-    <div class="mt-5 grid sm:grid-cols-4 gap-3 text-center">
-      <div class="rounded-xl bg-black/40 border border-white/10 p-4"><div class="flex justify-center"><span id="light" class="dot"></span></div><p id="verdict" class="mt-2 text-sm font-semibold"></p></div>
-      <div class="rounded-xl bg-black/40 border border-white/10 p-4"><p class="text-xs text-[var(--mut)]">Avg wait</p><p id="sw" class="mono text-xl text-[var(--teal)]"></p></div>
-      <div class="rounded-xl bg-black/40 border border-white/10 p-4"><p class="text-xs text-[var(--mut)]">Served ≤ 15 min</p><p id="sc" class="mono text-xl text-[var(--neon)]"></p></div>
-      <div class="rounded-xl bg-black/40 border border-white/10 p-4"><p class="text-xs text-[var(--mut)]">Utilization</p><p id="su" class="mono text-xl text-[var(--teal)]"></p></div>
-    </div>
-    <p class="text-[11px] text-[var(--mut)] mt-4">Assumptions (illustrative): 0.5 arrivals/min, mean service 6 min, 8-hour day. Green = at least 90% of customers wait ≤ 15 min.</p>
-  </article>
-</section>
-
-<!-- ===== PUBLICATIONS ===== -->
-<section id="writing" class="pb-28 reveal">
-  <p class="mono text-xs text-[var(--teal)] tracking-widest">THOUGHT LEADERSHIP</p>
-  <h2 class="mt-2 text-3xl sm:text-4xl font-bold">The <span class="glow-text">magazine rack</span></h2>
-  <div class="mt-10 grid md:grid-cols-3 gap-5">
-    <div class="card p-6 min-h-[240px] flex flex-col justify-between" style="background:linear-gradient(160deg,#4c1d95,#120a2e);border:1px solid rgba(167,139,250,.3)">
-      <span class="mono text-xs text-[var(--teal)]">SCAF TIMES · 5TH EDITION · 2026</span>
-      <h3 class="text-2xl font-bold leading-tight">The Invisible Accountant: A Profession in Identity Crisis</h3>
-      <span class="text-xs text-[var(--mut)]">Publication</span></div>
-    <div class="card p-6 min-h-[240px] flex flex-col justify-between" style="background:linear-gradient(160deg,#0f766e,#120a2e);border:1px solid rgba(45,212,191,.3)">
-      <span class="mono text-xs text-[var(--neon)]">SCAF TIMES · ISSUE 04 · 2025</span>
-      <h3 class="text-2xl font-bold leading-tight">AI and Finance – Sri Lanka’s Ascent Towards an Empathetic Financial Future</h3>
-      <span class="text-xs text-[var(--mut)]">Publication</span></div>
-    <div class="glass card p-6 min-h-[240px] flex flex-col justify-between">
-      <span class="mono text-xs text-[var(--teal)]">BEYOND THE SCREEN</span>
-      <div><h3 class="text-2xl font-bold">On stage, off the dashboard</h3><p class="text-sm text-[var(--mut)] mt-2">Emcee and host at NSBM Green University events, including CREST Mandara and SCEDS Upsurge Chapter 28.</p></div>
-      <span class="text-xs text-[var(--mut)]">🏆 1st Place, “Who’s the Author” writing competition</span></div>
-  </div>
-</section>
-
-<!-- ===== CONTACT ===== -->
-<section id="contact" class="pb-24 max-w-xl reveal">
-  <p class="mono text-xs text-[var(--teal)] tracking-widest">CONTACT</p>
-  <h2 class="mt-2 text-3xl sm:text-4xl font-bold">Let’s talk <span class="glow-text">insights</span></h2>
-  <form id="cf" novalidate class="mt-8 space-y-4">
-    <div><input id="nm" placeholder="Your name" class="w-full glass rounded-xl px-4 py-3 text-sm bg-transparent outline-none focus:border-[var(--neon)]"><p class="err text-xs text-red-400 mt-1 hidden">Please enter your name.</p></div>
-    <div><input id="em" type="email" placeholder="Email" class="w-full glass rounded-xl px-4 py-3 text-sm bg-transparent outline-none focus:border-[var(--neon)]"><p class="err text-xs text-red-400 mt-1 hidden">Enter a valid email address.</p></div>
-    <div><textarea id="ms" rows="4" placeholder="Message (min. 10 characters)" class="w-full glass rounded-xl px-4 py-3 text-sm bg-transparent outline-none focus:border-[var(--neon)]"></textarea><p class="err text-xs text-red-400 mt-1 hidden">Message must be at least 10 characters.</p></div>
-    <button class="btn-p rounded-xl px-6 py-3 font-semibold text-sm">Send message</button>
-    <p id="ok" class="text-sm text-[var(--teal)] hidden">Opening your email app…</p>
-  </form>
-</section>
-</main>
-
-<footer class="text-center text-xs text-[var(--mut)] pb-10 mono">© 2026 Yaline Shanthakumar · Homagama, Sri Lanka</footer>
-
-<script>
-/* ===== A. Scroll reveal + count-up ===== */
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');
- e.target.querySelectorAll('[data-c]').forEach(el=>{const t=+el.dataset.c,s=el.dataset.s||'';let n=0;
-  const id=setInterval(()=>{n+=Math.max(1,t/30);if(n>=t){n=t;clearInterval(id)}el.textContent=String(Math.round(n)).padStart(2,'0')+s},40)});
- io.unobserve(e.target)}),{threshold:.25});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-/* ===== B. Active nav pill ===== */
-const links=[...document.querySelectorAll('[data-n]')];
-const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle('act',l.getAttribute('href')==='#'+e.target.id))}),{threshold:.4});
-['home','pillars','work','writing','contact'].forEach(id=>so.observe(document.getElementById(id)));
-
-/* ===== C. Project 1: Tableau stepper ===== */
-const bars=h=>`<div class="flex items-end gap-1 h-20 mt-3">${h.map(x=>`<div class="flex-1 rounded-t" style="height:${x}%;background:linear-gradient(#a78bfa,#7c3aed)"></div>`).join('')}</div>`;
-const steps=[
- `<p class="mono text-xs text-[var(--teal)]">country | year | production_gwh | capacity_mw | investment_usd</p><p class="text-sm text-[var(--mut)] mt-3">Raw multi-source tables prepared and cleaned for 2015–2024.</p>`,
- `<p class="text-sm">Production ⇄ Capacity ⇄ Investment, joined on <span class="mono text-[var(--neon)]">country + year</span>.</p><p class="text-sm text-[var(--mut)] mt-3">Data relationships established in Tableau's data model.</p>`,
- `<p class="text-sm">Interactive views of production, capacity and investment trends.</p>${bars([20,28,34,41,50,58,66,75,86,95])}`];
-const sv=document.getElementById('stepView');sv.innerHTML=steps[0];
-document.querySelectorAll('#steps .tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('#steps .tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');sv.innerHTML=steps[b.dataset.i]});
-
-/* ===== D. Project 2: regression ===== */
-const A=18.5,B=2.3,sp=document.getElementById('spend');
-function reg(){const s=+sp.value,r=A+B*s,base=A+B*20;
- spendV.textContent='LKR '+s+'k';rev.textContent='LKR '+r.toFixed(1)+'k';gr.textContent='+'+((r-base)/base*100).toFixed(0)+'%'}
-sp.oninput=reg;reg();
-
-/* ===== E. Project 3: discrete-event simulation (seeded RNG, 30 replications) ===== */
-function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-function simulate(c){const R=rng(42),LAM=.5,MU=Math.log(6)-.125,SG=.5,DAY=480;let waits=[],ok=0,n=0,busy=0;
- const ln=()=>Math.exp(MU+SG*Math.sqrt(-2*Math.log(1-R()))*Math.cos(2*Math.PI*R()));
- for(let r=0;r<30;r++){const free=Array(c).fill(0);let t=0;
-  while(true){t+=-Math.log(1-R())/LAM;if(t>DAY)break;
-   let k=0;for(let i=1;i<c;i++)if(free[i]<free[k])k=i;
-   const st=Math.max(t,free[k]),sv=ln(),w=st-t;free[k]=st+sv;busy+=sv;waits.push(w);n++;if(w<=15)ok++}}
- return{w:waits.reduce((a,b)=>a+b,0)/n,p:ok/n,u:Math.min(1,busy/(30*DAY*c))}}
-function show(c){const s=simulate(c),good=s.p>=.9;
- light.className='dot '+(good?'on-g':'on-r');verdict.textContent=good?'Meets 15-min target':'Misses 15-min target';
- verdict.style.color=good?'#4ade80':'#f87171';sw.textContent=s.w.toFixed(1)+' min';sc.textContent=(s.p*100).toFixed(0)+'%';su.textContent=(s.u*100).toFixed(0)+'%'}
-document.querySelectorAll('#tellers .tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tellers .tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');show(+b.dataset.t)});
-show(2);
-
-/* ===== F. Contact form validation → mailto ===== */
-cf.onsubmit=e=>{e.preventDefault();const f=[nm.value.trim().length>1,/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value),ms.value.trim().length>=10];
- document.querySelectorAll('.err').forEach((p,i)=>p.classList.toggle('hidden',f[i]));
- if(f.every(Boolean)){ok.classList.remove('hidden');
-  location.href='mailto:skyali1202@gmail.com?subject='+encodeURIComponent('Portfolio message from '+nm.value)+'&body='+encodeURIComponent(ms.value+'\n\n— '+nm.value+' ('+em.value+')')}};
-</script>
-</body>
-</html>
+    <!-- METRICS TICKERS & PILLARS DUAL LAYER CONTAINER -->
+    <section class="w-full max-w-7xl mx-auto px-6 md:px-12 py-16 border-t border-neutral-900 z-10 relative">
+        <!-- Count Up Milestone Grid (From Image 1 structure) -->
+        <div id="metrics-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left mb-20 bg-neutral-900/20 backdrop-blur-sm border border-neutral-900/60 p-8 rounded-2xl">
+            <div>
+                <div class="text-4xl md:text-5xl font-bold font-mono-data text-white mb-2"><span class="counter-val" data-target="3">0</span>+</div>
+                <div class="text-sm font-semibold tracking-wider text-neutral-400 uppercase">Published Insights / Articles</div>
+            </div>
