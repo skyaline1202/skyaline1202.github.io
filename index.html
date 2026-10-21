@@ -1,409 +1,264 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yaline Shanthakumar | Business Analytics</title>
-<meta name="description" content="Business Analytics undergraduate: marketing analytics, AI and automation, simulation and data privacy.">
-<meta name="theme-color" content="#0b0c10">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
-<script src="https://cdn.tailwindcss.com/3.4.17"></script>
-<script>
-tailwind.config = { theme: { extend: {
-  colors: { ink:'#0b0c10', panel:'#111827', card:'#1f2833', edge:'#374151', teal:'#66fcf1', cyan:'#45f3ff', violet:'#a78bfa' },
-  fontFamily: { sans:['Plus Jakarta Sans','Inter','system-ui','sans-serif'], mono:['JetBrains Mono','ui-monospace','Menlo','monospace'] },
-  keyframes: {
-    marquee:{ to:{ transform:'translateX(-50%)' } },
-    float:{ '50%':{ transform:'translateY(-8px)' } },
-    up:{ to:{ opacity:'1', transform:'none' } }
-  },
-  animation: { marquee:'marquee 28s linear infinite', float:'float 6s ease-in-out infinite', up:'up .7s forwards' }
-} } };
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Yaline Shanthakumar · Business Analytics Portfolio</title>
+<meta name="description" content="Business Analytics undergraduate: customer insights, simulation, data storytelling.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-body{background:#0b0c10;color:#e5e7eb;overflow-x:hidden}
-html{scroll-padding-top:80px}
-:focus-visible{outline:2px solid #66fcf1;outline-offset:3px;border-radius:6px}
-.glow{transition:transform .2s,box-shadow .2s,border-color .2s,color .2s,background .2s}
-.glow:hover{box-shadow:0 0 0 1px #66fcf1,0 0 24px rgba(102,252,241,.35);border-color:#66fcf1}
-.pill{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.75rem;border:1px solid rgba(102,252,241,.3);background:rgba(102,252,241,.07);color:#66fcf1;padding:.2rem .7rem;border-radius:9999px;white-space:nowrap}
-.glass{background:rgba(17,24,39,.75);border:1px solid #374151;border-radius:1.25rem}
-.grid-bg{background-image:linear-gradient(rgba(102,252,241,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(102,252,241,.05) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(ellipse at 65% 40%,#000 20%,transparent 72%);mask-image:radial-gradient(ellipse at 65% 40%,#000 20%,transparent 72%)}
-.in{opacity:0;transform:translateY(16px)}
-.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
-.rv.show{opacity:1;transform:none}
-
-/* hero graphic */
-.tile{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
-.hero-art:hover .t-eye{transform:translate(-6px,-6px)}
-.hero-art:hover .t-chart{transform:translate(-8px,4px)}
-.hero-art:hover .t-funnel{transform:translate(8px,-2px)}
-.hero-art:hover .t-cog{transform:translate(6px,8px)}
-.spin{transform-origin:center;transform-box:fill-box;animation:spin 16s linear infinite}
-.hero-art:hover .spin{animation-duration:3s}
-@keyframes spin{to{transform:rotate(360deg)}}
-.draw{stroke-dasharray:400;stroke-dashoffset:400;animation:draw 2s .5s ease-out forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
-.blink{transform-origin:center;transform-box:fill-box;animation:blink 5s infinite}
-@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
-.pupil{transition:transform .15s ease-out}
-.caret{display:inline-block;width:2px;height:1em;background:#66fcf1;margin-left:3px;vertical-align:-2px;animation:cb 1s steps(1) infinite}
-@keyframes cb{50%{opacity:0}}
-.marq:hover .animate-marquee{animation-play-state:paused}
-
-/* simulator slider */
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:9999px;background:#374151;outline:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#66fcf1;box-shadow:0 0 14px rgba(102,252,241,.7);cursor:pointer}
-input[type=range]::-moz-range-thumb{width:22px;height:22px;border:0;border-radius:50%;background:#66fcf1;box-shadow:0 0 14px rgba(102,252,241,.7);cursor:pointer}
-.bar{transform-origin:bottom;transform-box:fill-box;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
-
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  .in,.rv{opacity:1;transform:none}.draw{stroke-dashoffset:0}
-  .marq .track{flex-wrap:wrap;justify-content:center;width:auto}.marq .dup{display:none}
-}
+/* ===== 1. DESIGN TOKENS (sampled from the cosmic reference) ===== */
+:root{--bg:#05030f;--indigo:#120a2e;--violet:#7c3aed;--neon:#a78bfa;--teal:#2dd4bf;--ink:#f4f2ff;--mut:#a9a3c7}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden}
+.mono{font-family:'JetBrains Mono',monospace}
+/* ===== 2. BACKGROUND: gradient, auras, stars ===== */
+.cosmos{position:fixed;inset:0;z-index:-2;background:
+ radial-gradient(60% 45% at 50% -8%,rgba(124,58,237,.55),transparent 70%),
+ radial-gradient(40% 40% at 90% 40%,rgba(99,102,241,.22),transparent 70%),
+ radial-gradient(45% 40% at 5% 85%,rgba(76,29,149,.35),transparent 70%),
+ linear-gradient(180deg,#120a2e 0%,#07041a 45%,#05030f 100%)}
+.stars{position:fixed;inset:0;z-index:-1;opacity:.7;
+ background-image:radial-gradient(1px 1px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 90px 120px,#c4b5fd,transparent),radial-gradient(1.5px 1.5px at 160px 60px,#fff,transparent),radial-gradient(1px 1px at 230px 180px,#99f6e4,transparent);
+ background-size:260px 220px}
+/* ===== 3. GRAIN OVERLAY (SVG feTurbulence) ===== */
+.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.09;mix-blend-mode:overlay;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* ===== 4. UTILITIES ===== */
+.glass{background:rgba(255,255,255,.05);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(167,139,250,.18)}
+.glow-text{background:linear-gradient(90deg,#a78bfa,#7c3aed 55%,#2dd4bf);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(124,58,237,.6))}
+.btn-p{background:var(--violet);box-shadow:0 0 28px rgba(124,58,237,.65);transition:.2s}.btn-p:hover{transform:translateY(-2px);box-shadow:0 0 42px rgba(167,139,250,.8)}
+.btn-g{border:1px solid rgba(167,139,250,.4);transition:.2s}.btn-g:hover{background:rgba(124,58,237,.15);border-color:var(--neon)}
+.card{border-radius:1.25rem;transition:.25s}.card:hover{border-color:rgba(45,212,191,.45)}
+.reveal{opacity:0;transform:translateY(24px);transition:.8s}.reveal.in{opacity:1;transform:none}
+.spin{animation:spin 16s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+input[type=range]{accent-color:var(--violet);width:100%}
+.dot{width:14px;height:14px;border-radius:50%;transition:.3s}
+.dot.on-g{background:#22c55e;box-shadow:0 0 18px #22c55e}.dot.on-r{background:#ef4444;box-shadow:0 0 18px #ef4444}
+.tab.active{background:var(--violet);color:#fff}
+.art{background:#000;position:relative;overflow:hidden}
+.art svg{width:100%;height:100%;display:block;filter:contrast(1.25)}
+.art::after{content:"";position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
+section{scroll-margin-top:5rem}
 </style>
 </head>
-<body class="font-sans antialiased">
+<body>
+<div class="cosmos"></div><div class="stars"></div><div class="grain"></div>
 
-<!-- NAV -->
-<header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink bg-opacity-70 backdrop-blur-md">
-  <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5" aria-label="Main">
-    <div class="flex items-center gap-8">
-      <a href="#home" class="font-mono text-base font-medium">yaline<span class="text-teal">_</span></a>
-      <ul class="hidden items-center gap-6 text-sm text-gray-400 md:flex">
-        <li><a class="transition hover:text-teal" href="#about">About</a></li>
-        <li><a class="transition hover:text-teal" href="#experience">Experience</a></li>
-        <li><a class="transition hover:text-teal" href="#projects">Projects</a></li>
-        <li><a class="transition hover:text-teal" href="#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="flex items-center gap-3">
-      <div class="text-right font-mono text-[11px] leading-tight text-gray-400" aria-label="Local time and UTC">
-        <div>Local time: <span id="lt" class="text-teal">--:--:--</span></div>
-        <div>UTC: <span id="ut">--:--:--</span> · <span id="off">UTC</span></div>
-      </div>
-      <button id="menuBtn" class="rounded-lg border border-edge px-3 py-1.5 text-sm md:hidden" aria-expanded="false" aria-controls="mm">Menu</button>
-    </div>
-  </nav>
-  <ul id="mm" class="hidden border-t border-white/10 bg-ink px-5 py-3 text-gray-300 md:hidden">
-    <li><a class="block py-2" href="#about">About</a></li>
-    <li><a class="block py-2" href="#experience">Experience</a></li>
-    <li><a class="block py-2" href="#projects">Projects</a></li>
-    <li><a class="block py-2" href="#contact">Contact</a></li>
-  </ul>
+<!-- ===== HEADER: logo + social dock ===== -->
+<header class="fixed top-0 inset-x-0 z-40 flex items-center justify-between px-5 md:px-10 py-5">
+  <a href="#home" class="text-lg font-bold tracking-tight">yaline <span class="text-[var(--neon)] font-medium">shanthakumar</span><span class="text-[var(--teal)]">.</span></a>
+  <div class="glass rounded-full px-4 py-2 flex gap-4">
+    <a aria-label="LinkedIn" target="_blank" rel="noopener" href="https://www.linkedin.com/in/yaline-s-616107382/" class="hover:text-[var(--teal)]"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11.5H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.82-2 3.75-2 4 0 4.75 2.6 4.75 6v5.9h-4v-5.2c0-1.25 0-2.85-1.75-2.85s-2 1.35-2 2.75v5.3h-4z"/></svg></a>
+    <!-- TODO: replace with your real GitHub URL -->
+    <a aria-label="GitHub" target="_blank" rel="noopener" href="https://github.com/" class="hover:text-[var(--teal)]"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg></a>
+  </div>
 </header>
 
-<main>
-<!-- HERO -->
-<section id="home" class="relative flex min-h-screen items-center overflow-hidden pb-16 pt-24">
-  <div class="grid-bg pointer-events-none absolute inset-0"></div>
-  <div class="relative mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
-    <div>
-      <p class="in animate-up mb-5 font-mono text-sm text-teal" style="animation-delay:.05s">NSBM Green University · Sri Lanka</p>
-      <h1 class="in animate-up text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl" style="animation-delay:.15s">Hello, I’m <span class="text-teal">Yaline Shanthakumar</span></h1>
-      <p class="in animate-up mt-5 min-h-[3.5rem] font-mono text-base text-gray-300 sm:text-lg" style="animation-delay:.3s" aria-live="off"><span id="typed">Business Analytics Undergraduate</span><span class="caret"></span></p>
-      <p class="sr-only">Business Analytics Undergraduate | Marketing Analytics | AI &amp; Automation</p>
-      <div class="in animate-up mt-8 flex flex-wrap gap-4" style="animation-delay:.45s">
-        <a href="#contact" class="glow rounded-xl border border-teal bg-teal px-6 py-3 font-semibold text-ink hover:scale-105 hover:bg-cyan">Get in Touch</a>
-        <a href="#projects" class="glow rounded-xl border border-edge px-6 py-3 font-semibold hover:scale-105 hover:text-teal">View Portfolio</a>
-      </div>
-    </div>
+<!-- ===== RIGHT-EDGE PILL NAV ===== -->
+<nav aria-label="Sections" class="fixed right-3 md:right-6 top-1/2 -translate-y-1/2 z-40 glass rounded-full py-3 px-2 flex flex-col gap-2">
+  <a href="#home" data-n title="Home" class="nv">⌂</a><a href="#pillars" data-n title="Expertise" class="nv">◆</a><a href="#work" data-n title="Work" class="nv">▦</a><a href="#writing" data-n title="Writing" class="nv">✎</a><a href="#contact" data-n title="Contact" class="nv">✉</a>
+</nav>
+<style>.nv{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;color:var(--mut);font-size:14px;transition:.2s}.nv:hover,.nv.act{background:var(--violet);color:#fff}</style>
 
-    <div class="in animate-up hero-art mx-auto w-full max-w-md" style="animation-delay:.3s" aria-hidden="true">
-      <svg viewBox="0 0 400 400" class="w-full">
-        <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#66fcf1"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs>
-        <circle cx="200" cy="200" r="188" fill="none" stroke="#66fcf1" stroke-opacity=".12" stroke-dasharray="3 9"/>
-        <g class="tile t-eye"><g class="animate-float">
-          <rect x="30" y="30" width="170" height="150" rx="22" fill="#111827" stroke="#374151"/>
-          <g class="blink"><path d="M52 105 Q115 50 178 105 Q115 160 52 105Z" fill="none" stroke="url(#g)" stroke-width="3"/>
-          <circle cx="115" cy="105" r="22" fill="none" stroke="#66fcf1" stroke-width="2"/>
-          <circle id="pupil" class="pupil" cx="115" cy="105" r="10" fill="#66fcf1"/></g>
-        </g></g>
-        <g class="tile t-chart"><g class="animate-float" style="animation-delay:-1.5s">
-          <rect x="215" y="30" width="155" height="150" rx="22" fill="#111827" stroke="#374151"/>
-          <path d="M235 150H350M235 120H350M235 90H350" stroke="#fff" stroke-opacity=".08"/>
-          <path class="draw" d="M235 142 L262 118 L288 126 L315 92 L350 62" fill="none" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="350" cy="62" r="5" fill="#66fcf1"/>
-        </g></g>
-        <g class="tile t-funnel"><g class="animate-float" style="animation-delay:-3s">
-          <rect x="30" y="200" width="170" height="170" rx="22" fill="#111827" stroke="#374151"/>
-          <path d="M55 235H175L130 290V335L100 322V290Z" fill="rgba(102,252,241,.08)" stroke="url(#g)" stroke-width="3" stroke-linejoin="round"/>
-          <circle cx="90" cy="255" r="4" fill="#66fcf1"/><circle cx="125" cy="252" r="4" fill="#66fcf1"/><circle cx="155" cy="256" r="4" fill="#66fcf1"/>
-        </g></g>
-        <g class="tile t-cog"><g class="animate-float" style="animation-delay:-4.5s">
-          <rect x="215" y="200" width="155" height="170" rx="22" fill="#111827" stroke="#374151"/>
-          <g class="spin">
-            <circle cx="292" cy="285" r="26" fill="none" stroke="#66fcf1" stroke-width="3"/>
-            <circle cx="292" cy="285" r="9" fill="#66fcf1"/>
-            <path d="M292 248v12M292 310v12M255 285h12M317 285h12M266 259l8 8M310 303l8 8M318 259l-8 8M274 303l-8 8" stroke="#66fcf1" stroke-width="5" stroke-linecap="round"/>
-          </g>
-        </g></g>
-      </svg>
+<main class="px-5 md:px-10 max-w-6xl mx-auto md:pr-20">
+
+<!-- ===== HERO ===== -->
+<section id="home" class="min-h-screen grid md:grid-cols-2 gap-10 items-center pt-28 pb-24 relative">
+  <div>
+    <span class="glass rounded-full px-3 py-1 text-xs mono text-[var(--neon)]">Business Analytics · NSBM Green University</span>
+    <h1 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight">Transforming Raw Data Into <span class="glow-text">Customer Insights</span></h1>
+    <p class="mt-5 text-[var(--mut)] max-w-md leading-relaxed">Business Analytics undergraduate specialized in bringing operational numbers to life through digital marketing strategy, predictive simulation, and data storytelling.</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/yaline-s-616107382/" class="btn-p rounded-xl px-5 py-3 font-semibold text-sm inline-flex items-center gap-2">Connect on LinkedIn <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11.5H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.82-2 3.75-2 4 0 4.75 2.6 4.75 6v5.9h-4v-5.2c0-1.25 0-2.85-1.75-2.85s-2 1.35-2 2.75v5.3h-4z"/></svg></a>
+      <a target="_blank" rel="noopener" href="https://github.com/" class="btn-g rounded-xl px-5 py-3 font-semibold text-sm inline-flex items-center gap-2">View GitHub Repos <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg></a>
     </div>
   </div>
+  <!-- Focal artwork: grainy retro-futuristic "data eye" (no photo) -->
+  <div class="art rounded-2xl aspect-[4/3] border border-[rgba(167,139,250,.2)] shadow-[0_0_80px_rgba(124,58,237,.35)]" role="img" aria-label="Abstract artwork: an eye made of data bars">
+    <svg viewBox="0 0 400 300">
+      <defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient>
+      <radialGradient id="ir"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#a78bfa"/><stop offset="1" stop-color="#1e0b4b"/></radialGradient></defs>
+      <rect width="400" height="300" fill="#000"/>
+      <g stroke="#7c3aed" stroke-width="2" opacity=".7"><path d="M40 60h320M40 80h320M40 100h320M40 120h320M40 140h320M40 160h320M40 180h320M40 200h320M40 220h320"/></g>
+      <g fill="url(#lg)" opacity=".85"><rect x="70" y="170" width="14" height="50"/><rect x="92" y="150" width="14" height="70"/><rect x="114" y="185" width="14" height="35"/><rect x="290" y="160" width="14" height="60"/><rect x="312" y="130" width="14" height="90"/><rect x="334" y="175" width="14" height="45"/></g>
+      <path d="M90 130Q200 40 310 130Q200 220 90 130Z" fill="#0a0420" stroke="#c4b5fd" stroke-width="3"/>
+      <circle cx="200" cy="130" r="46" fill="url(#ir)"/><circle cx="200" cy="130" r="18" fill="#000"/><circle cx="188" cy="118" r="6" fill="#fff"/>
+      <circle cx="70" cy="70" r="26" fill="#050210" stroke="#7c3aed" stroke-width="2"/><circle cx="335" cy="75" r="20" fill="#050210" stroke="#2dd4bf" stroke-width="2"/>
+      <circle cx="320" cy="240" r="30" fill="none" stroke="#a78bfa" stroke-width="3" stroke-dasharray="4 6"/>
+    </svg>
+  </div>
+  <!-- Rotating badge -->
+  <a href="#work" class="absolute left-0 bottom-6 w-28 h-28 hidden sm:block" aria-label="Explore projects">
+    <svg viewBox="0 0 120 120" class="spin w-full h-full"><defs><path id="c" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs><text fill="#a78bfa" font-size="10.5" letter-spacing="2.2" class="mono"><textPath href="#c">• MY PORTFOLIO • EXPLORE PROJECTS </textPath></text></svg>
+    <span class="absolute inset-0 grid place-items-center text-xl text-[var(--teal)]">↘</span>
+  </a>
 </section>
 
-<!-- ABOUT: statement, pillars, counters -->
-<section id="about" class="mx-auto max-w-6xl px-5 py-20">
-  <h2 class="rv max-w-3xl text-3xl font-extrabold leading-tight sm:text-4xl">Converting high-volume operational metrics into clear strategic decisions.</h2>
-  <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-    <article class="rv glass glow p-6 hover:-translate-y-1"><span class="font-mono text-sm text-teal">01</span><h3 class="mt-3 font-bold">Marketing Analytics &amp; Consumer Behavior</h3></article>
-    <article class="rv glass glow p-6 hover:-translate-y-1"><span class="font-mono text-sm text-teal">02</span><h3 class="mt-3 font-bold">Business Optimization &amp; Operations</h3></article>
-    <article class="rv glass glow p-6 hover:-translate-y-1"><span class="font-mono text-sm text-teal">03</span><h3 class="mt-3 font-bold">AI, Tech Governance &amp; Data Privacy</h3></article>
-    <article class="rv glass glow p-6 hover:-translate-y-1"><span class="font-mono text-sm text-teal">04</span><h3 class="mt-3 font-bold">Simulation &amp; Predictive Modeling</h3></article>
-  </div>
-  <div class="rv mt-8 grid gap-6 rounded-3xl border border-teal/20 bg-card p-8 sm:grid-cols-3">
-    <div class="text-center"><div class="font-mono text-5xl font-medium text-teal"><span data-count="3.86" data-dec="2">3.86</span></div><p class="mt-2 text-sm text-gray-400">Current Cumulative GPA</p></div>
-    <div class="text-center"><div class="font-mono text-5xl font-medium text-teal"><span data-count="3">3</span>+</div><p class="mt-2 text-sm text-gray-400">Core Analytics Projects Completed</p></div>
-    <div class="text-center"><div class="font-mono text-5xl font-medium text-teal">1st</div><p class="mt-2 text-sm text-gray-400">Place, Research &amp; Article Writing Competitions</p></div>
+<!-- ===== METRICS ===== -->
+<section class="grid grid-cols-3 gap-3 sm:gap-6 reveal" id="metrics">
+  <div class="glass card p-4 sm:p-7"><div class="mono text-3xl sm:text-5xl font-semibold text-[var(--teal)]"><span data-c="3">0</span>+</div><p class="mt-2 text-xs sm:text-sm text-[var(--mut)]">Published Insights / Articles</p></div>
+  <div class="glass card p-4 sm:p-7"><div class="mono text-3xl sm:text-5xl font-semibold text-[var(--neon)]"><span data-c="10" data-s="k">0</span>+</div><p class="mt-2 text-xs sm:text-sm text-[var(--mut)]">Rows Processed &amp; Modeled</p></div>
+  <div class="glass card p-4 sm:p-7"><div class="mono text-3xl sm:text-5xl font-semibold text-[var(--teal)]"><span data-c="5">0</span>+</div><p class="mt-2 text-xs sm:text-sm text-[var(--mut)]">Major Events Hosted</p></div>
+</section>
+
+<!-- ===== PILLARS ===== -->
+<section id="pillars" class="py-28 reveal">
+  <p class="mono text-xs text-[var(--teal)] tracking-widest">MY EXPERTISE</p>
+  <h2 class="mt-2 text-3xl sm:text-4xl font-bold">Four pillars, one lens: <span class="glow-text">the customer</span></h2>
+  <div class="mt-10 grid sm:grid-cols-2 gap-4">
+    <div class="glass card p-6"><span class="mono text-[var(--neon)]">01</span><h3 class="mt-2 text-xl font-semibold">Customer &amp; Marketing Analytics</h3><p class="mt-2 text-sm text-[var(--mut)]">GA4, Google Ads, campaign analysis and consumer behavior.</p></div>
+    <div class="glass card p-6"><span class="mono text-[var(--neon)]">02</span><h3 class="mt-2 text-xl font-semibold">Data Storytelling &amp; Editorial</h3><p class="mt-2 text-sm text-[var(--mut)]">Editor-in-Chief of the SBAC Magazine; insights written for people.</p></div>
+    <div class="glass card p-6"><span class="mono text-[var(--neon)]">03</span><h3 class="mt-2 text-xl font-semibold">Simulation &amp; Predictive Modeling</h3><p class="mt-2 text-sm text-[var(--mut)]">Python, R, regression and discrete-event simulation.</p></div>
+    <div class="glass card p-6"><span class="mono text-[var(--neon)]">04</span><h3 class="mt-2 text-xl font-semibold">Responsible AI &amp; Privacy Policy</h3><p class="mt-2 text-sm text-[var(--mut)]">Data privacy and the ethics of automation in business.</p></div>
   </div>
 </section>
 
-<!-- TOOLS -->
-<section class="mx-auto max-w-6xl px-5 py-10">
-  <h2 class="rv mb-6 text-2xl font-extrabold">Tools I work with</h2>
-  <div class="marq overflow-hidden" style="-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)">
-    <div class="track animate-marquee flex w-max gap-3">
-      <div class="flex gap-3"><span class="pill">Python</span><span class="pill">R</span><span class="pill">SQL</span><span class="pill">Power BI</span><span class="pill">Tableau</span><span class="pill">Excel</span><span class="pill">Google Analytics 4</span><span class="pill">Google Ads</span><span class="pill">Git</span><span class="pill">GitHub</span></div>
-      <div class="dup flex gap-3" aria-hidden="true"><span class="pill">Python</span><span class="pill">R</span><span class="pill">SQL</span><span class="pill">Power BI</span><span class="pill">Tableau</span><span class="pill">Excel</span><span class="pill">Google Analytics 4</span><span class="pill">Google Ads</span><span class="pill">Git</span><span class="pill">GitHub</span></div>
+<!-- ===== SELECTED WORK ===== -->
+<section id="work" class="pb-28">
+  <p class="mono text-xs text-[var(--teal)] tracking-widest">SELECTED WORK</p>
+  <h2 class="mt-2 text-3xl sm:text-4xl font-bold">Case studies you can <span class="glow-text">play with</span></h2>
+
+  <!-- Project 1: Tableau stepper -->
+  <article class="glass card p-6 sm:p-8 mt-10 reveal">
+    <span class="mono text-xs text-[var(--neon)]">TABLEAU · JUL 2026</span>
+    <h3 class="text-2xl font-semibold mt-1">Global Renewable Energy Transition Dashboard</h3>
+    <p class="text-sm text-[var(--mut)] mt-2">Production, capacity and investment trends, 2015–2024. Step through the build:</p>
+    <div class="flex flex-wrap gap-2 mt-5" id="steps">
+      <button class="tab active rounded-full px-4 py-1.5 text-sm glass" data-i="0">1 · Raw data</button>
+      <button class="tab rounded-full px-4 py-1.5 text-sm glass" data-i="1">2 · Relationships</button>
+      <button class="tab rounded-full px-4 py-1.5 text-sm glass" data-i="2">3 · Dashboard</button>
     </div>
-  </div>
-</section>
+    <div id="stepView" class="mt-5 rounded-xl bg-black/40 border border-white/10 p-5 min-h-[150px]"></div>
+  </article>
 
-<!-- PROJECTS -->
-<section id="projects" class="mx-auto max-w-6xl px-5 py-20">
-  <h2 class="rv text-3xl font-extrabold sm:text-4xl">Projects</h2>
-  <p class="rv mt-2 text-gray-400">Selected analytics work from 2026.</p>
-  <div class="mt-10 grid gap-6 lg:grid-cols-3">
-    <article class="rv glass glow flex flex-col p-7 hover:-translate-y-1">
-      <time class="font-mono text-xs text-teal">Aug 2026</time>
-      <h3 class="mt-2 text-xl font-bold">Retail Outlet Performance Analysis and Revenue Modeling</h3>
-      <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-gray-300 marker:text-teal">
-        <li>Cleaned data and ran EDA in Python</li>
-        <li>Simple linear regression in R</li>
-        <li>Marketing spend drives 82% of revenue variation</li>
-      </ul>
-      <div class="mt-5 flex flex-wrap gap-2"><span class="pill">Python</span><span class="pill">R</span><span class="pill">Regression</span><span class="pill">EDA</span></div>
-      <a href="https://github.com" target="_blank" rel="noopener" class="glow mt-auto inline-block self-start rounded-lg border border-teal/50 px-5 py-2 text-sm text-teal hover:scale-105 hover:bg-teal hover:text-ink" style="margin-top:1.5rem">View Repository</a>
-    </article>
-    <article class="rv glass glow flex flex-col p-7 hover:-translate-y-1">
-      <time class="font-mono text-xs text-teal">Jul 2026</time>
-      <h3 class="mt-2 text-xl font-bold">Global Renewable Energy Transition Dashboard</h3>
-      <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-gray-300 marker:text-teal">
-        <li>Interactive Tableau views of production capacity</li>
-        <li>Tracks investment and infrastructure shifts</li>
-        <li>Covers 2015–2024</li>
-      </ul>
-      <div class="mt-5 flex flex-wrap gap-2"><span class="pill">Tableau</span><span class="pill">Data Viz</span><span class="pill">Data Modeling</span></div>
-      <a href="https://github.com" target="_blank" rel="noopener" class="glow mt-auto inline-block self-start rounded-lg border border-teal/50 px-5 py-2 text-sm text-teal hover:scale-105 hover:bg-teal hover:text-ink" style="margin-top:1.5rem">Launch Live Dashboard</a>
-    </article>
-    <article class="rv glass glow flex flex-col p-7 hover:-translate-y-1">
-      <time class="font-mono text-xs text-teal">Sept 2026</time>
-      <h3 class="mt-2 text-xl font-bold">Simulation-Based Capacity Planning</h3>
-      <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-gray-300 marker:text-teal">
-        <li>Discrete-event simulation of a retail bank service center</li>
-        <li>Lognormal service times, 30 replications</li>
-        <li>Balances labor cost against a 15-minute wait target</li>
-      </ul>
-      <div class="mt-5 flex flex-wrap gap-2"><span class="pill">Simulation</span><span class="pill">Operations</span><span class="pill">Queueing</span></div>
-      <a href="https://github.com" target="_blank" rel="noopener" class="glow mt-auto inline-block self-start rounded-lg border border-teal/50 px-5 py-2 text-sm text-teal hover:scale-105 hover:bg-teal hover:text-ink" style="margin-top:1.5rem">View Repository</a>
-    </article>
-  </div>
-</section>
-
-<!-- SIMULATOR -->
-<section id="playground" class="mx-auto max-w-6xl px-5 py-10">
-  <h2 class="rv text-3xl font-extrabold sm:text-4xl">Live Campaign ROI &amp; Growth Simulator</h2>
-  <p class="rv mt-2 max-w-2xl text-gray-400">Move the sliders to see how spend and conversion shape revenue. This is an illustrative model with made-up numbers, not real client data.</p>
-  <div class="rv glass mt-8 grid gap-8 p-6 md:grid-cols-2 md:p-8">
-    <div class="space-y-7">
+  <!-- Project 2: regression -->
+  <article class="glass card p-6 sm:p-8 mt-6 reveal">
+    <span class="mono text-xs text-[var(--neon)]">PYTHON + R · AUG 2026</span>
+    <h3 class="text-2xl font-semibold mt-1">Retail Outlet Performance Analysis and Revenue Modeling</h3>
+    <p class="text-sm text-[var(--mut)] mt-2">Cleaning, EDA and visualization in Python; simple linear regression in R. Drag to predict revenue.</p>
+    <div class="mt-6 grid md:grid-cols-2 gap-6 items-center">
       <div>
-        <label for="spend" class="flex justify-between text-sm"><span>Monthly Marketing Spend ($)</span><output id="spendV" class="font-mono text-teal">5,000</output></label>
-        <input id="spend" type="range" min="1000" max="20000" step="500" value="5000" class="mt-3">
+        <label for="spend" class="text-sm">Marketing Spend: <span id="spendV" class="mono text-[var(--teal)]"></span></label>
+        <input id="spend" type="range" min="10" max="100" step="1" value="40" class="mt-3">
+        <p class="mono text-xs text-[var(--mut)] mt-3">Revenue = 18.5 + 2.3 × Spend &nbsp;·&nbsp; R² = 0.82</p>
+        <div class="mt-3 h-2 rounded bg-white/10"><div class="h-2 rounded" style="width:82%;background:linear-gradient(90deg,#7c3aed,#2dd4bf)"></div></div>
+        <p class="text-xs text-[var(--mut)] mt-1">Marketing spend explains 82% of the variation in revenue.</p>
       </div>
-      <div>
-        <label for="conv" class="flex justify-between text-sm"><span>Conversion Rate (%)</span><output id="convV" class="font-mono text-teal">2.5</output></label>
-        <input id="conv" type="range" min="0.5" max="8" step="0.1" value="2.5" class="mt-3">
-      </div>
-      <div class="grid grid-cols-3 gap-3 text-center">
-        <div class="rounded-xl bg-ink p-3"><div id="rev" class="font-mono text-xl text-teal">0</div><div class="mt-1 text-[11px] text-gray-400">Est. Gross Revenue ($k)</div></div>
-        <div class="rounded-xl bg-ink p-3"><div id="roi" class="font-mono text-xl text-teal">0</div><div class="mt-1 text-[11px] text-gray-400">ROI (%)</div></div>
-        <div class="rounded-xl bg-ink p-3"><div id="sales" class="font-mono text-xl text-teal">0</div><div class="mt-1 text-[11px] text-gray-400">Projected Sales</div></div>
+      <div class="rounded-xl bg-black/40 border border-white/10 p-5 text-center">
+        <p class="text-xs text-[var(--mut)]">Predicted Revenue</p><p id="rev" class="mono text-4xl font-semibold text-[var(--teal)]"></p>
+        <p class="text-xs text-[var(--mut)] mt-3">Growth vs. baseline (spend 20)</p><p id="gr" class="mono text-2xl text-[var(--neon)]"></p>
       </div>
     </div>
-    <div>
-      <p class="mb-2 font-mono text-xs text-gray-400">Projected revenue, next 6 months ($k)</p>
-      <svg viewBox="0 0 300 170" class="w-full" role="img" aria-label="Projected monthly revenue bars">
-        <path d="M0 140H300" stroke="#374151"/>
-        <g id="bars" fill="#66fcf1"></g>
-        <g id="lbls" font-family="JetBrains Mono, monospace" font-size="10" fill="#9ca3af" text-anchor="middle"></g>
-      </svg>
-      <p class="mt-2 text-xs text-gray-500">Model: visitors = spend ÷ $1.50 per click, order value $60, monthly growth 6%.</p>
+    <p class="text-[11px] text-[var(--mut)] mt-4">Illustrative coefficients in LKR '000 for demonstration; replace with your fitted R model output.</p>
+  </article>
+
+  <!-- Project 3: simulation -->
+  <article class="glass card p-6 sm:p-8 mt-6 reveal">
+    <span class="mono text-xs text-[var(--neon)]">DISCRETE-EVENT SIMULATION · SEPT 2026</span>
+    <h3 class="text-2xl font-semibold mt-1">Simulation-Based Capacity Planning — Retail Banking Service Center</h3>
+    <p class="text-sm text-[var(--mut)] mt-2">Exponential arrivals, lognormal service times, 30 replications. Pick a staffing level; it runs live in your browser.</p>
+    <div class="flex flex-wrap gap-2 mt-5" id="tellers">
+      <button class="tab rounded-full px-4 py-1.5 text-sm glass active" data-t="2">2 Tellers</button>
+      <button class="tab rounded-full px-4 py-1.5 text-sm glass" data-t="3">3 Tellers</button>
+      <button class="tab rounded-full px-4 py-1.5 text-sm glass" data-t="4">4 Tellers</button>
+      <button class="tab rounded-full px-4 py-1.5 text-sm glass" data-t="5">5 Tellers</button>
     </div>
+    <div class="mt-5 grid sm:grid-cols-4 gap-3 text-center">
+      <div class="rounded-xl bg-black/40 border border-white/10 p-4"><div class="flex justify-center"><span id="light" class="dot"></span></div><p id="verdict" class="mt-2 text-sm font-semibold"></p></div>
+      <div class="rounded-xl bg-black/40 border border-white/10 p-4"><p class="text-xs text-[var(--mut)]">Avg wait</p><p id="sw" class="mono text-xl text-[var(--teal)]"></p></div>
+      <div class="rounded-xl bg-black/40 border border-white/10 p-4"><p class="text-xs text-[var(--mut)]">Served ≤ 15 min</p><p id="sc" class="mono text-xl text-[var(--neon)]"></p></div>
+      <div class="rounded-xl bg-black/40 border border-white/10 p-4"><p class="text-xs text-[var(--mut)]">Utilization</p><p id="su" class="mono text-xl text-[var(--teal)]"></p></div>
+    </div>
+    <p class="text-[11px] text-[var(--mut)] mt-4">Assumptions (illustrative): 0.5 arrivals/min, mean service 6 min, 8-hour day. Green = at least 90% of customers wait ≤ 15 min.</p>
+  </article>
+</section>
+
+<!-- ===== PUBLICATIONS ===== -->
+<section id="writing" class="pb-28 reveal">
+  <p class="mono text-xs text-[var(--teal)] tracking-widest">THOUGHT LEADERSHIP</p>
+  <h2 class="mt-2 text-3xl sm:text-4xl font-bold">The <span class="glow-text">magazine rack</span></h2>
+  <div class="mt-10 grid md:grid-cols-3 gap-5">
+    <div class="card p-6 min-h-[240px] flex flex-col justify-between" style="background:linear-gradient(160deg,#4c1d95,#120a2e);border:1px solid rgba(167,139,250,.3)">
+      <span class="mono text-xs text-[var(--teal)]">SCAF TIMES · 5TH EDITION · 2026</span>
+      <h3 class="text-2xl font-bold leading-tight">The Invisible Accountant: A Profession in Identity Crisis</h3>
+      <span class="text-xs text-[var(--mut)]">Publication</span></div>
+    <div class="card p-6 min-h-[240px] flex flex-col justify-between" style="background:linear-gradient(160deg,#0f766e,#120a2e);border:1px solid rgba(45,212,191,.3)">
+      <span class="mono text-xs text-[var(--neon)]">SCAF TIMES · ISSUE 04 · 2025</span>
+      <h3 class="text-2xl font-bold leading-tight">AI and Finance – Sri Lanka’s Ascent Towards an Empathetic Financial Future</h3>
+      <span class="text-xs text-[var(--mut)]">Publication</span></div>
+    <div class="glass card p-6 min-h-[240px] flex flex-col justify-between">
+      <span class="mono text-xs text-[var(--teal)]">BEYOND THE SCREEN</span>
+      <div><h3 class="text-2xl font-bold">On stage, off the dashboard</h3><p class="text-sm text-[var(--mut)] mt-2">Emcee and host at NSBM Green University events, including CREST Mandara and SCEDS Upsurge Chapter 28.</p></div>
+      <span class="text-xs text-[var(--mut)]">🏆 1st Place, “Who’s the Author” writing competition</span></div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section id="experience" class="mx-auto max-w-4xl px-5 py-20">
-  <h2 class="rv text-3xl font-extrabold sm:text-4xl">Experience &amp; Writing</h2>
-  <div class="mt-10 border-l border-edge">
-    <article class="rv relative pb-10 pl-8">
-      <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-teal shadow-[0_0_0_5px_rgba(102,252,241,.15)]"></span>
-      <time class="font-mono text-xs text-teal">Jan 2026 – Present</time>
-      <h3 class="mt-1 text-lg font-bold">Assistant Secretary &amp; Editor-in-Chief</h3>
-      <p class="text-sm text-gray-400">Students’ Business Analytics Circle (SBAC), NSBM Green University</p>
-      <p class="mt-2 max-w-xl text-sm text-gray-300">Keep official records, help run student events, and lead editorial planning for the SBAC magazine.</p>
-    </article>
-    <article class="rv relative pb-10 pl-8">
-      <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-teal shadow-[0_0_0_5px_rgba(102,252,241,.15)]"></span>
-      <time class="font-mono text-xs text-teal">Jul – Sept 2025</time>
-      <h3 class="mt-1 text-lg font-bold">Group Leader &amp; Project Lead, CSR Initiatives</h3>
-      <p class="text-sm text-gray-400">CREST Program, NSBM Green University</p>
-      <p class="mt-2 max-w-xl text-sm text-gray-300">Led Project DigniTap, a school sanitation initiative aligned with UN SDG 6, from planning to delivery.</p>
-    </article>
-    <article class="rv relative pl-8">
-      <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-violet shadow-[0_0_0_5px_rgba(167,139,250,.15)]"></span>
-      <time class="font-mono text-xs text-violet">2025 – 2026</time>
-      <h3 class="mt-1 text-lg font-bold">Published Author, SCAF Times</h3>
-      <p class="text-sm text-gray-400">SCAF, NSBM Green University</p>
-      <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-gray-300 marker:text-violet">
-        <li>“The Invisible Accountant: A Profession in Identity Crisis” (5th Edition, 2026)</li>
-        <li>“AI and Finance – Sri Lanka’s Ascent Towards an Empathetic Financial Future” (Issue 04, 2025)</li>
-      </ul>
-    </article>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="mx-auto max-w-6xl px-5 pb-20">
-  <div class="rv glass grid gap-10 p-8 md:grid-cols-2 md:p-12">
-    <div>
-      <h2 class="text-3xl font-extrabold sm:text-4xl">Let’s talk data.</h2>
-      <p class="mt-3 text-gray-400">Open to internships and collaborations in analytics and marketing.</p>
-      <ul class="mt-8 space-y-3 font-mono text-sm">
-        <li><a href="https://www.linkedin.com/in/yaline-s-616107382/" target="_blank" rel="noopener" class="glow flex items-center justify-between rounded-lg border border-edge px-4 py-3 hover:text-teal"><span>LinkedIn</span><span>↗</span></a></li>
-        <li><a href="https://github.com" target="_blank" rel="noopener" class="glow flex items-center justify-between rounded-lg border border-edge px-4 py-3 hover:text-teal"><span>GitHub</span><span>↗</span></a></li>
-        <li><a href="mailto:skyali1202@gmail.com" class="glow flex items-center justify-between rounded-lg border border-edge px-4 py-3 hover:text-teal"><span>skyali1202@gmail.com</span><span>↗</span></a></li>
-      </ul>
-    </div>
-    <form id="form" class="space-y-4 rounded-2xl border border-edge bg-ink p-6" novalidate>
-      <p class="font-mono text-xs text-gray-500">New message → skyali1202@gmail.com</p>
-      <div><label for="n" class="mb-1 block text-sm text-gray-400">Name</label><input id="n" autocomplete="name" class="w-full rounded-lg border border-edge bg-panel px-4 py-3 outline-none transition focus:border-teal focus:ring-1 focus:ring-teal"></div>
-      <div><label for="e" class="mb-1 block text-sm text-gray-400">Email</label><input id="e" type="email" autocomplete="email" class="w-full rounded-lg border border-edge bg-panel px-4 py-3 outline-none transition focus:border-teal focus:ring-1 focus:ring-teal"></div>
-      <div><label for="m" class="mb-1 block text-sm text-gray-400">Message</label><textarea id="m" rows="4" class="w-full rounded-lg border border-edge bg-panel px-4 py-3 outline-none transition focus:border-teal focus:ring-1 focus:ring-teal"></textarea></div>
-      <button type="submit" class="glow w-full rounded-lg bg-teal px-6 py-3 font-semibold text-ink hover:scale-[1.02] hover:bg-cyan">Send message</button>
-      <p id="msg" class="min-h-[1.25rem] text-sm text-teal" role="status"></p>
-    </form>
-  </div>
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="pb-24 max-w-xl reveal">
+  <p class="mono text-xs text-[var(--teal)] tracking-widest">CONTACT</p>
+  <h2 class="mt-2 text-3xl sm:text-4xl font-bold">Let’s talk <span class="glow-text">insights</span></h2>
+  <form id="cf" novalidate class="mt-8 space-y-4">
+    <div><input id="nm" placeholder="Your name" class="w-full glass rounded-xl px-4 py-3 text-sm bg-transparent outline-none focus:border-[var(--neon)]"><p class="err text-xs text-red-400 mt-1 hidden">Please enter your name.</p></div>
+    <div><input id="em" type="email" placeholder="Email" class="w-full glass rounded-xl px-4 py-3 text-sm bg-transparent outline-none focus:border-[var(--neon)]"><p class="err text-xs text-red-400 mt-1 hidden">Enter a valid email address.</p></div>
+    <div><textarea id="ms" rows="4" placeholder="Message (min. 10 characters)" class="w-full glass rounded-xl px-4 py-3 text-sm bg-transparent outline-none focus:border-[var(--neon)]"></textarea><p class="err text-xs text-red-400 mt-1 hidden">Message must be at least 10 characters.</p></div>
+    <button class="btn-p rounded-xl px-6 py-3 font-semibold text-sm">Send message</button>
+    <p id="ok" class="text-sm text-[var(--teal)] hidden">Opening your email app…</p>
+  </form>
 </section>
 </main>
 
-<footer class="border-t border-white/10 py-8 text-center font-mono text-xs text-gray-500">© <span id="yr">2026</span> Yaline Shanthakumar · <a href="#home" class="hover:text-teal">Back to top</a></footer>
+<footer class="text-center text-xs text-[var(--mut)] pb-10 mono">© 2026 Yaline Shanthakumar · Homagama, Sri Lanka</footer>
 
 <script>
-var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.getElementById('yr').textContent = new Date().getFullYear();
+/* ===== A. Scroll reveal + count-up ===== */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');
+ e.target.querySelectorAll('[data-c]').forEach(el=>{const t=+el.dataset.c,s=el.dataset.s||'';let n=0;
+  const id=setInterval(()=>{n+=Math.max(1,t/30);if(n>=t){n=t;clearInterval(id)}el.textContent=String(Math.round(n)).padStart(2,'0')+s},40)});
+ io.unobserve(e.target)}),{threshold:.25});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// mobile menu
-var mb = document.getElementById('menuBtn'), mm = document.getElementById('mm');
-mb.addEventListener('click', function () { mb.setAttribute('aria-expanded', mm.classList.toggle('hidden') === false); });
-mm.addEventListener('click', function (e) { if (e.target.tagName === 'A') { mm.classList.add('hidden'); mb.setAttribute('aria-expanded', 'false'); } });
+/* ===== B. Active nav pill ===== */
+const links=[...document.querySelectorAll('[data-n]')];
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle('act',l.getAttribute('href')==='#'+e.target.id))}),{threshold:.4});
+['home','pillars','work','writing','contact'].forEach(id=>so.observe(document.getElementById(id)));
 
-// clock: local time + UTC
-var lt = document.getElementById('lt'), ut = document.getElementById('ut'), offEl = document.getElementById('off');
-var o = -new Date().getTimezoneOffset(), sign = o >= 0 ? '+' : '-', ao = Math.abs(o);
-offEl.textContent = 'UTC' + sign + Math.floor(ao / 60) + (ao % 60 ? ':' + String(ao % 60).padStart(2, '0') : '');
-function tick() {
-  var d = new Date();
-  lt.textContent = d.toLocaleTimeString('en-GB', { hour12: false });
-  ut.textContent = d.toLocaleTimeString('en-GB', { hour12: false, timeZone: 'UTC' });
-}
-tick(); setInterval(tick, 1000);
+/* ===== C. Project 1: Tableau stepper ===== */
+const bars=h=>`<div class="flex items-end gap-1 h-20 mt-3">${h.map(x=>`<div class="flex-1 rounded-t" style="height:${x}%;background:linear-gradient(#a78bfa,#7c3aed)"></div>`).join('')}</div>`;
+const steps=[
+ `<p class="mono text-xs text-[var(--teal)]">country | year | production_gwh | capacity_mw | investment_usd</p><p class="text-sm text-[var(--mut)] mt-3">Raw multi-source tables prepared and cleaned for 2015–2024.</p>`,
+ `<p class="text-sm">Production ⇄ Capacity ⇄ Investment, joined on <span class="mono text-[var(--neon)]">country + year</span>.</p><p class="text-sm text-[var(--mut)] mt-3">Data relationships established in Tableau's data model.</p>`,
+ `<p class="text-sm">Interactive views of production, capacity and investment trends.</p>${bars([20,28,34,41,50,58,66,75,86,95])}`];
+const sv=document.getElementById('stepView');sv.innerHTML=steps[0];
+document.querySelectorAll('#steps .tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('#steps .tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');sv.innerHTML=steps[b.dataset.i]});
 
-// typed subtitle
-var words = ['Business Analytics Undergraduate', 'Marketing Analytics', 'AI & Automation'], wi = 0, ci = 0, del = false, typed = document.getElementById('typed');
-function type() {
-  var w = words[wi];
-  if (reduce) { typed.textContent = words.join(' | '); return; }
-  typed.textContent = w.slice(0, ci);
-  if (!del && ci < w.length) { ci++; setTimeout(type, 70); }
-  else if (!del) { del = true; setTimeout(type, 1600); }
-  else if (ci > 0) { ci--; setTimeout(type, 35); }
-  else { del = false; wi = (wi + 1) % words.length; setTimeout(type, 300); }
-}
-type();
+/* ===== D. Project 2: regression ===== */
+const A=18.5,B=2.3,sp=document.getElementById('spend');
+function reg(){const s=+sp.value,r=A+B*s,base=A+B*20;
+ spendV.textContent='LKR '+s+'k';rev.textContent='LKR '+r.toFixed(1)+'k';gr.textContent='+'+((r-base)/base*100).toFixed(0)+'%'}
+sp.oninput=reg;reg();
 
-// scroll reveal + counters
-function count(el) {
-  if (reduce) return;
-  var end = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), t0 = null;
-  function step(t) { if (!t0) t0 = t; var p = Math.min((t - t0) / 1200, 1); el.textContent = (end * (1 - Math.pow(1 - p, 3))).toFixed(dec); if (p < 1) requestAnimationFrame(step); }
-  requestAnimationFrame(step);
-}
-var els = document.querySelectorAll('.rv');
-if ('IntersectionObserver' in window) {
-  var io = new IntersectionObserver(function (es) {
-    es.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      e.target.classList.add('show');
-      e.target.querySelectorAll('[data-count]').forEach(count);
-      io.unobserve(e.target);
-    });
-  }, { threshold: 0.12 });
-  els.forEach(function (el) { io.observe(el); });
-} else { els.forEach(function (el) { el.classList.add('show'); }); }
+/* ===== E. Project 3: discrete-event simulation (seeded RNG, 30 replications) ===== */
+function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function simulate(c){const R=rng(42),LAM=.5,MU=Math.log(6)-.125,SG=.5,DAY=480;let waits=[],ok=0,n=0,busy=0;
+ const ln=()=>Math.exp(MU+SG*Math.sqrt(-2*Math.log(1-R()))*Math.cos(2*Math.PI*R()));
+ for(let r=0;r<30;r++){const free=Array(c).fill(0);let t=0;
+  while(true){t+=-Math.log(1-R())/LAM;if(t>DAY)break;
+   let k=0;for(let i=1;i<c;i++)if(free[i]<free[k])k=i;
+   const st=Math.max(t,free[k]),sv=ln(),w=st-t;free[k]=st+sv;busy+=sv;waits.push(w);n++;if(w<=15)ok++}}
+ return{w:waits.reduce((a,b)=>a+b,0)/n,p:ok/n,u:Math.min(1,busy/(30*DAY*c))}}
+function show(c){const s=simulate(c),good=s.p>=.9;
+ light.className='dot '+(good?'on-g':'on-r');verdict.textContent=good?'Meets 15-min target':'Misses 15-min target';
+ verdict.style.color=good?'#4ade80':'#f87171';sw.textContent=s.w.toFixed(1)+' min';sc.textContent=(s.p*100).toFixed(0)+'%';su.textContent=(s.u*100).toFixed(0)+'%'}
+document.querySelectorAll('#tellers .tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tellers .tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');show(+b.dataset.t)});
+show(2);
 
-// eye follows pointer
-var pupil = document.getElementById('pupil'), busy = false;
-if (pupil && !reduce) {
-  window.addEventListener('pointermove', function (e) {
-    if (busy) return; busy = true;
-    requestAnimationFrame(function () {
-      var r = pupil.getBoundingClientRect(), dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2), d = Math.hypot(dx, dy) || 1, k = Math.min(9, d / 25);
-      pupil.style.transform = 'translate(' + (dx / d * k) + 'px,' + (dy / d * k * .6) + 'px)';
-      busy = false;
-    });
-  }, { passive: true });
-}
-
-// ROI simulator
-var sp = document.getElementById('spend'), cv = document.getElementById('conv');
-var barsG = document.getElementById('bars'), lblG = document.getElementById('lbls'), NS = 'http://www.w3.org/2000/svg', rects = [], texts = [];
-for (var i = 0; i < 6; i++) {
-  var r = document.createElementNS(NS, 'rect'); r.setAttribute('x', 18 + i * 48); r.setAttribute('width', 30); r.setAttribute('rx', 5); r.setAttribute('y', 0); r.setAttribute('height', 140); r.setAttribute('class', 'bar'); r.setAttribute('fill-opacity', (0.45 + i * 0.11).toFixed(2));
-  barsG.appendChild(r); rects.push(r);
-  var t = document.createElementNS(NS, 'text'); t.setAttribute('x', 33 + i * 48); t.setAttribute('y', 158); t.textContent = 'M' + (i + 1);
-  lblG.appendChild(t);
-}
-function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
-function sim() {
-  var spend = +sp.value, conv = +cv.value / 100, clicks = spend / 1.5, orders = clicks * conv, revenue = orders * 60;
-  document.getElementById('spendV').textContent = fmt(spend);
-  document.getElementById('convV').textContent = (+cv.value).toFixed(1);
-  document.getElementById('rev').textContent = (revenue / 1000).toFixed(1);
-  document.getElementById('roi').textContent = fmt((revenue - spend) / spend * 100);
-  document.getElementById('sales').textContent = fmt(orders);
-  var top = Math.max(revenue * Math.pow(1.06, 5), 1);
-  for (var j = 0; j < 6; j++) {
-    var v = revenue * Math.pow(1.06, j), h = Math.max(6, v / top * 120);
-    rects[j].setAttribute('y', 140 - 120); rects[j].setAttribute('height', 120);
-    rects[j].style.transform = 'scaleY(' + (h / 120) + ')';
-  }
-}
-sp.addEventListener('input', sim); cv.addEventListener('input', sim); sim();
-
-// contact form (opens visitor's email app)
-document.getElementById('form').addEventListener('submit', function (ev) {
-  ev.preventDefault();
-  var n = document.getElementById('n').value.trim(), e = document.getElementById('e').value.trim(), m = document.getElementById('m').value.trim(), out = document.getElementById('msg');
-  if (!n || !/^\S+@\S+\.\S+$/.test(e) || !m) { out.textContent = 'Please add your name, a valid email and a message.'; return; }
-  out.textContent = 'Opening your email app…';
-  window.location.href = 'mailto:skyali1202@gmail.com?subject=' + encodeURIComponent('Portfolio message from ' + n) + '&body=' + encodeURIComponent(m + '\n\nFrom: ' + n + ' (' + e + ')');
-});
+/* ===== F. Contact form validation → mailto ===== */
+cf.onsubmit=e=>{e.preventDefault();const f=[nm.value.trim().length>1,/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value),ms.value.trim().length>=10];
+ document.querySelectorAll('.err').forEach((p,i)=>p.classList.toggle('hidden',f[i]));
+ if(f.every(Boolean)){ok.classList.remove('hidden');
+  location.href='mailto:skyali1202@gmail.com?subject='+encodeURIComponent('Portfolio message from '+nm.value)+'&body='+encodeURIComponent(ms.value+'\n\n— '+nm.value+' ('+em.value+')')}};
 </script>
 </body>
 </html>
